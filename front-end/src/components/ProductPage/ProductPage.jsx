@@ -5,7 +5,6 @@ const ProductPage = () => {
 
     return (
         <>
-            <div>ProductPage</div>
             <ProductImages />
             <ProductDescription />
         </>

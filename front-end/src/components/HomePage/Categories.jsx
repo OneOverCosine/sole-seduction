@@ -36,7 +36,7 @@ const Categories = () => {
         return brands.map((brand, index) => {
             return (
                 <Col key={index}>
-                    <Card onClick={goToBrand} style={{ cursor: "pointer" }}>
+                    <Card className='m-1' onClick={goToBrand} style={{ cursor: "pointer" }}>
                         <Card.Img variant='top' src={brand.image} />
                         <Card.Title>{brand.name}</Card.Title>
                     </Card>
@@ -46,7 +46,7 @@ const Categories = () => {
     }
 
     return (
-        <Row className='mt-2' md={5}>
+        <Row className='p-2' xs={2} md={4}>
             {displayBrands()}
         </Row>
     )

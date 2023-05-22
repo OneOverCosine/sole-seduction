@@ -1,6 +1,7 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
-import HomePage from './components/HomePage/HomePage'
+import Footer from './components/NavBar/Footer';
+import HomePage from './components/HomePage/HomePage';
 import NavBar from './components/NavBar/NavBar';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <>
             <NavBar />
             <HomePage />
+            <Footer />
         </>
     )
 }

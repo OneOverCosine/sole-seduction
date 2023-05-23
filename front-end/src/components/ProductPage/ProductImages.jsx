@@ -1,18 +1,15 @@
 import loafers from '../../assets/product-page/mens-shoes-loafers.png';
 import productplaceholder from '../../assets/product-page/gallery-placeholder.png';
 
-const ProductImages = () => {
- 
+const ProductImages = (props) => {            
 
     return (
         <>
-            <img className='product-image' src={loafers} height={400} />
-            <div className='product-gallery'>
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
+            <div className="image">
+                <img src={props.img} alt="product image" height={400} />
+            
             </div>
-        
+    
        </>
     )
 }

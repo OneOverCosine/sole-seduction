@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Footer from './components/NavBar/Footer';
 import HomePage from './components/HomePage/HomePage';
 import ProductPage from './components/ProductPage/ProductPage';
+import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import NavBar from './components/NavBar/NavBar';
 
 
@@ -16,7 +17,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/productpage" element={<ProductPage />} />
-                                       
+                    <Route path="/checkout" element={<CheckoutPage />} />                  
                 </Routes>
                 <Footer />
             </BrowserRouter>

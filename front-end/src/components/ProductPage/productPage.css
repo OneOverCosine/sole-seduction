@@ -75,7 +75,7 @@
     height: 100px;
     display: flex;
     cursor: pointer;
-    margin: 10px 25px;
+    margin: 10px 40px;
 }
 
 .gallery-image img {
@@ -91,7 +91,7 @@
 
 .gallery-image img.active {
     opacity: 1;
-    border: 1px solid lightseagreen;
+    border: 2px solid lightseagreen;
 }
 
 .box .cart-btn {

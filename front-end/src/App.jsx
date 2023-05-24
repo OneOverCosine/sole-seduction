@@ -6,6 +6,7 @@ import HomePage from './components/HomePage/HomePage';
 import ProductPage from './components/ProductPage/ProductPage';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import NavBar from './components/NavBar/NavBar';
+import CategoryPage from './components/CategoryPage/CategoryPage';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 <NavBar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/categories" element={<CategoryPage />} />
                     <Route path="/productpage" element={<ProductPage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />                  
                 </Routes>

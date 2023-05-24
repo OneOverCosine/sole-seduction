@@ -1,18 +1,36 @@
-import loafers from '../../assets/product-page/mens-shoes-loafers.png';
-import productplaceholder from '../../assets/product-page/gallery-placeholder.png';
+import { useState } from 'react';
+import './productPage.css';
 
-const ProductImages = () => {
- 
+const ProductImages = (props) => {  
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const handleThumbnail = (index) => {
+        setCurrentImageIndex(index);
+
+        const galleryImages = document.querySelectorAll(".gallery-image img");
+        galleryImages[currentImageIndex].classList.remove("active");
+        galleryImages[index].classList.add("active");    
+    }
 
     return (
         <>
-            <img className='product-image' src={loafers} height={400} />
-            <div className='product-gallery'>
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
-                <img className='product-gallery-image' src={productplaceholder} height={120} />
+            <div className="images">
+                <div className="main-image">
+                    <img src={props.img[currentImageIndex]} alt="product image" />
+                
+                </div>
+
+                <div className="gallery-image">
+                    {
+                        props.img.map((image, index) => (
+                            <img src={image} alt="thumbnail" onClick={ () => handleThumbnail(index) } key={index}/>
+                            
+                        ))
+                    }
+                </div>
+
             </div>
-        
+    
        </>
     )
 }

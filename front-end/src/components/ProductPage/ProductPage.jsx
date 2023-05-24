@@ -1,25 +1,36 @@
 import ProductImages from "./ProductImages";
 import ProductDescription from "./ProductDescription";
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
-
+import { mockProductData } from '../../mockProducts';
+const product = mockProductData
+import './productPage.css';
 
 const ProductPage = () => {
 
-    return (
+    const displayProductDetails = product.map(productItem => (
         <>
-            {/* <Container>
-                <Row>
-                    <Col sm={6}><ProductImages /></Col> 
-                    <Col sm={6}><ProductDescription /></Col>
-                </Row>
-            </Container> */}
-
-            <ProductImages />
-            <ProductDescription />
+            <div className="product-page">
+                <ProductImages 
+                    key={productItem._id}
+                    img={productItem.img}
+                />
+                
+                <ProductDescription 
+                    key={productItem.title}
+                    title={productItem.title}
+                    price={productItem.price}
+                    description={productItem.description}
+                    colours={productItem.colours}
+                    sizes={productItem.sizes}
+                    />
+            </div>
         </>
+        ));
+           
+    return (
+        <>{displayProductDetails}</>       
+        
     )
+ 
 }
 
 export default ProductPage;

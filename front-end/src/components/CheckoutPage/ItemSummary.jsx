@@ -1,4 +1,4 @@
-import loafersThumbnail from '../../assets/product-page/mens-shoes-loafers.png';
+import loafersThumbnail from '../../assets/product-page/mens-shoes-loafers.jpg';
 
 const ItemSummary = () => {
     return (

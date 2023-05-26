@@ -7,7 +7,7 @@ const NavBar = () => {
         <>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="/">
                         <img
                             alt="sole seduction logo a shoe with a heart"
                             src={logo} // Stolen from the internet

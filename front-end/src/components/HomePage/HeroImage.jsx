@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'react-bootstrap/Image';
 import './HeroImage.css';
-import converse from '../../assets/hero-converse.png';
-import heels from '../../assets/hero-heels.png';
-import nike from '../../assets/hero-nike.png';
+import converse from '../../assets/hero-converse.jpg';
+import heels from '../../assets/hero-heels.jpg';
+import nike from '../../assets/hero-nike.jpg';
 
 const HeroImage = () => {
 

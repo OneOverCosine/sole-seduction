@@ -7,22 +7,25 @@ import ProductPage from './components/ProductPage/ProductPage';
 import CheckoutPage from './components/CheckoutPage/CheckoutPage';
 import NavBar from './components/NavBar/NavBar';
 import CategoryPage from './components/CategoryPage/CategoryPage';
+import ShopContextProvider from './context/ShopContext';
 
 
 function App() {
 
     return (
         <>
-            <BrowserRouter>
-                <NavBar />
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/categories" element={<CategoryPage />} />
-                    <Route path="/productpage" element={<ProductPage />} />
-                    <Route path="/checkout" element={<CheckoutPage />} />                  
-                </Routes>
-                <Footer />
-            </BrowserRouter>
+            <ShopContextProvider>
+                <BrowserRouter>
+                    <NavBar />
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/categories" element={<CategoryPage />} />
+                        <Route path="/productpage" element={<ProductPage />} />
+                        <Route path="/checkout" element={<CheckoutPage />} />                  
+                    </Routes>
+                    <Footer />
+                </BrowserRouter>
+            </ShopContextProvider>
         </>
     )
 }

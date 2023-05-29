@@ -18,7 +18,7 @@ const ProductPage = () => {
                 <ProductDescription 
                     // key={productItem.title}
                     id={productItem._id}
-                    title={productItem.title}
+                    model={productItem.model}
                     price={productItem.price}
                     description={productItem.description}
                     colours={productItem.colours}

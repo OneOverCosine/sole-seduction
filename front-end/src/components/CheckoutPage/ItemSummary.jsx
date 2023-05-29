@@ -5,14 +5,14 @@ import { useContext } from "react";
 import {ShopContext} from '../../context/ShopContext'
 
 const ItemSummary = (props) => {
-    const { _id, title, img, price } = props.data;
+    const { _id, model, img, price } = props.data;
     const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
     return (
         <>
             <div className="cartItem">
                 <img src={img[0]}  />
                 <div className="description">
-                    <p> {title} </p>
+                    <p> {model} </p>
                     <p> £{price} </p>
                     <div className="countHandler">
                         <button onClick={() => removeFromCart(_id)}> - </button>

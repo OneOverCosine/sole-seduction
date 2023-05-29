@@ -1,11 +1,26 @@
-import loafersThumbnail from '../../assets/product-page/mens-shoes-loafers.jpg';
 
-const ItemSummary = () => {
+//'Number' converts the string input to a number
+
+import { useContext } from "react";
+import {ShopContext} from '../../context/ShopContext'
+
+const ItemSummary = (props) => {
+    const { _id, title, img, price } = props.data;
+    const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
     return (
         <>
-            <img className='checkout-thumbnail' src={loafersThumbnail} height={100} />
-            <div className='checkout-item-summary'>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis sapiente facere ea reiciendis aut recusandae veritatis quo, atque exercitationem laborum quas quae maiores esse illum nam natus fugiat impedit a!
+            <div className="cartItem">
+                <img src={img[0]}  />
+                <div className="description">
+                    <p> {title} </p>
+                    <p> £{price} </p>
+                    <div className="countHandler">
+                        <button onClick={() => removeFromCart(_id)}> - </button>
+                        <input value={cartItems[_id]} onChange={(e) => updateCartItemCount(Number(e.target.value), _id)} /> 
+                        <button onClick={() => addToCart(_id)}> + </button>
+                    </div>
+                </div>
+
             </div>
 
         </>

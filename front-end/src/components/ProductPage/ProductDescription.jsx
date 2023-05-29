@@ -16,7 +16,7 @@ const ProductDescription = (props) => {
         <div className="details">
             <div className="box">
                 <div className="row">
-                    <h2>{props.title}</h2>
+                    <h2>{props.model}</h2>
                     <span>£{props.price}</span>
                 </div>
 

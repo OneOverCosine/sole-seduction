@@ -1,8 +1,11 @@
 import React from 'react';
-import placeHolder from '../../assets/placeholder-image.jpg'
+import placeHolder from '../../assets/placeholder-image.jpg';
+import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 
 const Categories = () => {
+
+    const navigate = useNavigate();
 
     // If we figure out how to pass these from the server they can be served as props here, so that they could be changed easily.
     const brands = [
@@ -30,6 +33,7 @@ const Categories = () => {
 
     const goToBrand = () => {
         // Redirect to category page with params '/brandname'
+        navigate('/')
     }
 
     const displayBrands = () => {

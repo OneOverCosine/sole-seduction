@@ -1,11 +1,11 @@
 import express from "express";
+import Product from "../models/product.model.js";
 
 const router = express.Router();
 
-/* basic search page for all products */
-
 router.route(`/`).get(async (req, res) => {
+
 
 });
 
-export { router as categories };
+export { router as products };

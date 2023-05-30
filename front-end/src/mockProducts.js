@@ -29,7 +29,7 @@ export const mockProductData = [
                 "colour": "brown",
                 "size": 11,
                 "quantity": 3
-            },
+            }
         ]
     },
     {

@@ -4,7 +4,6 @@ import dbConnect from './src/dbConnect.js';
 import environmentConfig from './src/environmentConfig.js';
 import express from 'express';
 
-import { users } from "./src/routes/testUserRoute.route.js";
 import { categories } from './src/routes/categories.route.js';
 
 const app = express();
@@ -29,7 +28,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/", users);
 app.use("/categories", categories);
 
 app.listen(process.env.PORT, () => {

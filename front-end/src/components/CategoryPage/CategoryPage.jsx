@@ -1,39 +1,55 @@
-import placeHolder from '../../assets/placeholder-image.jpg';
-import './CategoryPage.css';
-import { Row, Col, Card } from 'react-bootstrap';
+import axios from "axios";
+import placeHolder from "../../assets/placeholder-image.jpg";
+import "./CategoryPage.css";
+import { Row, Col, Card } from "react-bootstrap";
+import { useEffect, useState } from 'react';
 
 const CategoryPage = () => {
+    const [categoryInfo, setCategoryInfo] = useState([]);
+
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
+            .then(res => {
+                setCategoryInfo(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
+
+    console.log("Category info:\n" + categoryInfo);
 
     // Need to understand how the styles/filters information will be provided before we add that functionality
     // Sample data
     const products = [
         {
-            brand: 'Balenciaga',
-            style: 'Fresh Creps',
+            brand: "Balenciaga",
+            style: "Fresh Creps",
             price: 74.99,
             image: placeHolder
         },
         {
-            brand: 'Prada',
-            style: 'Hightops',
+            brand: "Prada",
+            style: "Hightops",
             price: 174.99,
             image: placeHolder
         },
         {
-            brand: 'Converse',
-            style: 'Sneakers',
+            brand: "Converse",
+            style: "Sneakers",
             price: 244.99,
             image: placeHolder
         },
         {
-            brand: 'Adidas',
-            style: 'Trainers',
+            brand: "Adidas",
+            style: "Trainers",
             price: 94.99,
             image: placeHolder
         },
         {
-            brand: 'Nike',
-            style: 'Air Jordans',
+            brand: "Nike",
+            style: "Air Jordans",
             price: 712.99,
             image: placeHolder
         }
@@ -46,8 +62,8 @@ const CategoryPage = () => {
         return products.map((product, index) => {
             return (
                 <Col key={index}>
-                    <Card className='product-card m-1' onClick={goToProduct} style={{ cursor: "pointer" }}>
-                        <Card.Img variant='top' src={product.image} />
+                    <Card className="product-card m-1" onClick={goToProduct} style={{ cursor: "pointer" }}>
+                        <Card.Img variant="top" src={product.image} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>
                             <Card.Subtitle>{product.style}</Card.Subtitle>
@@ -60,7 +76,7 @@ const CategoryPage = () => {
     }
 
     return (
-        <Row className='p-2' xs={2} md={4}>
+        <Row className="p-2" xs={2} md={4}>
             {displayProducts()}
         </Row>
     )

@@ -6,7 +6,6 @@ const HomePage = () => {
         <>
             <HeroImage />
             <Categories />
-
         </>
     )
 }

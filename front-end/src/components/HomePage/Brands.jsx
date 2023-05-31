@@ -3,11 +3,10 @@ import placeHolder from '../../assets/placeholder-image.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 
-const Categories = () => {
+const Brands = () => {
 
     const navigate = useNavigate();
 
-    // If we figure out how to pass these from the server they can be served as props here, so that they could be changed easily.
     const brands = [
         {
             name: 'Balenciaga',
@@ -40,11 +39,11 @@ const Categories = () => {
         return brands.map((brand, index) => {
             return (
                 <Col key={index}>
-                    <Card className='m-1' onClick={goToBrand} style={{ cursor: "pointer" }}>
+                    <Card className='card m-1' onClick={goToBrand} style={{ "cursor": "pointer" }} >
                         <Card.Img variant='top' src={brand.image} />
                         <Card.Title>{brand.name}</Card.Title>
                     </Card>
-                </Col>
+                </Col >
             )
         })
     }
@@ -56,4 +55,4 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default Brands;

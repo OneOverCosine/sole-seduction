@@ -1,6 +1,6 @@
 import CheckoutPage from './CheckoutPage.jsx';
 import { MemoryRouter } from "react-router-dom";
-import { render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react';
 
 describe('Checkout Page Tests', () => {
     it('Shows title Shopping Cart', () => {

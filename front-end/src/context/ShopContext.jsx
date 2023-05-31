@@ -6,7 +6,6 @@ import { createContext, useState, useEffect } from "react";
 import { mockProductData } from '../mockProducts';
 const product = mockProductData
 
-
 export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
@@ -40,10 +39,12 @@ const ShopContextProvider = (props) => {
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 //find the product to have access to it's price
-                let itemInfo = product.find((productItem) => productItem._id === Number(item))
+                let itemInfo = product.find((productItem) => productItem._id === item)
                 
                 //amount of that specific product in the cart * price
-                // subtotal += cartItems[item] * itemInfo.Number(price)
+                if (itemInfo) {
+                    subtotal += cartItems[item] * itemInfo.price
+                }
             } 
         }
 
@@ -77,3 +78,6 @@ const ShopContextProvider = (props) => {
 }
 
 export default ShopContextProvider
+
+
+

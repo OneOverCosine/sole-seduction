@@ -16,7 +16,7 @@ const ProductPage = () => {
                 />
                 
                 <ProductDescription 
-                    // key={productItem.title}
+                    // key={productItem.model}
                     id={productItem._id}
                     model={productItem.model}
                     price={productItem.price}
@@ -24,8 +24,6 @@ const ProductPage = () => {
                     colours={productItem.colours}
                     sizes={productItem.sizes}
                 />
-                
-
             </div>
         </>
         ));

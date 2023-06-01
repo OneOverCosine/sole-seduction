@@ -1,4 +1,5 @@
-export const mockProductData = [
+{
+"products": [
     {
         "_id": "1",
         "brand": "Prada",
@@ -6,18 +7,38 @@ export const mockProductData = [
         "gender": "Men",
         "img": ["./src/assets/product-page/mens-shoes-loafers.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
-        "price": 100,
+        "price": 300,
         "colours": ["brown", "black"],
-        "sizes": [8, 9, 10, 11, 12, 13],
+        "sizes": [8, 9, 10, 11, 12],
         "inventory": [
             {
-                "colour": "brown",
+                "colour": "black",
+                "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
                 "size": 9,
                 "quantity": 3
             },
             {
                 "colour": "black",
+                "size": 10,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
+                "size": 11,
+                "quantity": 3
+            },
+             {
+                "colour": "brown",
                 "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 9,
                 "quantity": 3
             },
             {
@@ -29,20 +50,30 @@ export const mockProductData = [
                 "colour": "brown",
                 "size": 11,
                 "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 12,
+                "quantity": 3
             }
         ]
     },
     {
         "_id": "2",
         "brand": "Prada",
-        "model": "Crochet wedge sandals",
+        "model": "Leather Wedge Sandals",
         "gender": "Women",
-        "img": ["./src/assets/product-page/mens-shoes-loafers.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
+        "img": ["./src/assets/product-page/womens-wedge-sandals.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
         "price": 920,
         "colours": ["brown", "black"],
         "sizes": [4, 5, 6, 7, 8],
         "inventory": [
+            {
+                "colour": "black",
+                "size": 4,
+                "quantity": 3
+            },
             {
                 "colour": "black",
                 "size": 5,
@@ -59,6 +90,11 @@ export const mockProductData = [
                 "quantity": 3
             },
             {
+                "colour": "black",
+                "size": 8,
+                "quantity": 3
+            },
+             {
                 "colour": "brown",
                 "size": 4,
                 "quantity": 3
@@ -67,7 +103,23 @@ export const mockProductData = [
                 "colour": "brown",
                 "size": 5,
                 "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 6,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 7,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 8,
+                "quantity": 3
             }
+
         ]
     },
     {
@@ -83,6 +135,11 @@ export const mockProductData = [
         "inventory": [
             {
                 "colour": "blue",
+                "size": 4,
+                "quantity": 5
+            },
+            {
+                "colour": "blue",
                 "size": 5,
                 "quantity": 5
             },
@@ -97,6 +154,11 @@ export const mockProductData = [
                 "quantity": 5
             },
             {
+                "colour": "blue",
+                "size": 8,
+                "quantity": 5
+            },
+             {
                 "colour": "white",
                 "size": 4,
                 "quantity": 5
@@ -105,6 +167,21 @@ export const mockProductData = [
                 "colour": "white",
                 "size": 5,
                 "quantity": 5
+            },
+            {
+                "colour": "white",
+                "size": 6,
+                "quantity": 5
+            },
+            {
+                "colour": "white",
+                "size": 7,
+                "quantity": 5
+            },
+            {
+                "colour": "white",
+                "size": 8,
+                "quantity": 0
             }
         ]
     },
@@ -121,6 +198,11 @@ export const mockProductData = [
         "inventory": [
             {
                 "colour": "pink",
+                "size": 4,
+                "quantity": 10
+            },
+            {
+                "colour": "pink",
                 "size": 5,
                 "quantity": 10
             },
@@ -135,6 +217,11 @@ export const mockProductData = [
                 "quantity": 10
             },
             {
+                "colour": "pink",
+                "size": 8,
+                "quantity": 10
+            },
+              {
                 "colour": "white",
                 "size": 4,
                 "quantity": 10
@@ -142,6 +229,21 @@ export const mockProductData = [
             {
                 "colour": "white",
                 "size": 5,
+                "quantity": 10
+            },
+             {
+                "colour": "white",
+                "size": 6,
+                "quantity": 10
+            },
+            {
+                "colour": "white",
+                "size": 7,
+                "quantity": 10
+            },
+            {
+                "colour": "white",
+                "size": 8,
                 "quantity": 10
             }
         ]
@@ -157,31 +259,57 @@ export const mockProductData = [
         "colours": ["brown", "purple"],
         "sizes": [4, 5, 6, 7, 8],
         "inventory": [
-            {
-                "colour": "pink",
-                "size": 5,
-                "quantity": 6
-            },
-            {
-                "colour": "pink",
-                "size": 6,
-                "quantity": 6
-            },
-            {
-                "colour": "pink",
-                "size": 7,
-                "quantity": 6
-            },
-            {
-                "colour": "white",
+             {
+                "colour": "brown",
                 "size": 4,
-                "quantity": 6
+                "quantity": 10
             },
             {
-                "colour": "white",
+                "colour": "brown",
                 "size": 5,
-                "quantity": 6
+                "quantity": 10
+            },
+            {
+                "colour": "brown",
+                "size": 6,
+                "quantity": 10
+            },
+            {
+                "colour": "brown",
+                "size": 7,
+                "quantity": 10
+            },
+            {
+                "colour": "brown",
+                "size": 8,
+                "quantity": 10
+            },
+              {
+                "colour": "purple",
+                "size": 4,
+                "quantity": 10
+            },
+            {
+                "colour": "purple",
+                "size": 5,
+                "quantity": 10
+            },
+             {
+                "colour": "purple",
+                "size": 6,
+                "quantity": 10
+            },
+            {
+                "colour": "purple",
+                "size": 7,
+                "quantity": 10
+            },
+            {
+                "colour": "purple",
+                "size": 8,
+                "quantity": 10
             }
+           
         ]
     },
       {
@@ -192,28 +320,53 @@ export const mockProductData = [
         "img": ["./src/assets/product-page/mens-trainers-adidas.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
         "price": 250,
-        "colours": ["brown", "black"],
-        "sizes": [8, 9, 10, 11, 12, 13],
+        "colours": ["white", "black"],
+        "sizes": [8, 9, 10, 11, 12],
         "inventory": [
-            {
-                "colour": "brown",
-                "size": 9,
-                "quantity": 3
-            },
             {
                 "colour": "black",
                 "size": 8,
                 "quantity": 3
             },
             {
-                "colour": "brown",
+                "colour": "black",
+                "size": 9,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
                 "size": 10,
                 "quantity": 3
             },
             {
-                "colour": "brown",
+                "colour": "black",
                 "size": 11,
                 "quantity": 3
+            },
+             {
+                "colour": "white",
+                "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "white",
+                "size": 9,
+                "quantity": 3
+            },
+            {
+                "colour": "white",
+                "size": 10,
+                "quantity": 3
+            },
+            {
+                "colour": "white",
+                "size": 11,
+                "quantity": 3
+            },
+            {
+                "colour": "white",
+                "size": 12,
+                "quantity": 0
             }
         ]
     },
@@ -226,16 +379,41 @@ export const mockProductData = [
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
         "price": 250,
         "colours": ["brown", "black"],
-        "sizes": [8, 9, 10, 11, 12, 13],
+        "sizes": [8, 9, 10, 11, 12],
         "inventory": [
+           {
+                "colour": "black",
+                "size": 8,
+                "quantity": 3
+            },
             {
-                "colour": "brown",
+                "colour": "black",
                 "size": 9,
                 "quantity": 3
             },
             {
                 "colour": "black",
+                "size": 10,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
+                "size": 11,
+                "quantity": 3
+            },
+             {
+                "colour": "black",
+                "size": 12,
+                "quantity": 3
+            },
+             {
+                "colour": "brown",
                 "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 9,
                 "quantity": 3
             },
             {
@@ -247,6 +425,11 @@ export const mockProductData = [
                 "colour": "brown",
                 "size": 11,
                 "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 12,
+                "quantity": 3
             }
         ]
     },
@@ -257,10 +440,15 @@ export const mockProductData = [
         "gender": "Women",
         "img": ["./src/assets/product-page/womens-dm-boots.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
-        "price": 700,
+        "price": 120,
         "colours": ["yellow", "red"],
         "sizes": [4, 5, 6, 7, 8],
         "inventory": [
+            {
+                "colour": "yellow",
+                "size": 4,
+                "quantity": 6
+            },
             {
                 "colour": "yellow",
                 "size": 5,
@@ -271,9 +459,14 @@ export const mockProductData = [
                 "size": 6,
                 "quantity": 6
             },
-            {
+             {
                 "colour": "yellow",
                 "size": 7,
+                "quantity": 6
+            },
+             {
+                "colour": "yellow",
+                "size": 8,
                 "quantity": 6
             },
             {
@@ -284,6 +477,21 @@ export const mockProductData = [
             {
                 "colour": "red",
                 "size": 5,
+                "quantity": 6
+            },
+             {
+                "colour": "red",
+                "size": 6,
+                "quantity": 6
+            },
+             {
+                "colour": "red",
+                "size": 7,
+                "quantity": 6
+            },
+             {
+                "colour": "red",
+                "size": 8,
                 "quantity": 6
             }
         ]
@@ -300,13 +508,38 @@ export const mockProductData = [
         "sizes": [8, 9, 10, 11, 12, 13],
         "inventory": [
             {
-                "colour": "brown",
+                "colour": "black",
+                "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
                 "size": 9,
                 "quantity": 3
             },
             {
                 "colour": "black",
+                "size": 10,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
+                "size": 11,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
+                "size": 12,
+                "quantity": 3
+            },
+             {
+                "colour": "brown",
                 "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 9,
                 "quantity": 3
             },
             {
@@ -317,6 +550,11 @@ export const mockProductData = [
             {
                 "colour": "brown",
                 "size": 11,
+                "quantity": 3
+            },
+            {
+                "colour": "brown",
+                "size": 12,
                 "quantity": 3
             }
         ]
@@ -329,30 +567,61 @@ export const mockProductData = [
         "img": ["./src/assets/product-page/mens-sandals.jpg", "./src/assets/product-page/gallery-placeholder-1.jpg", "./src/assets/product-page/gallery-placeholder-2.jpg", "./src/assets/product-page/gallery-placeholder-3.jpg", "./src/assets/product-page/gallery-placeholder-4.jpg"],
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam ut venenatis tellus in metus vulputate eu. Sit amet porttitor eget dolor. Ultrices gravida dictum fusce ut placerat. Vitae congue eu consequat ac felis donec et odio pellentesque. Et pharetra pharetra massa massa ultricies. Netus et malesuada fames ac turpis egestas sed. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Fames ac turpis egestas maecenas.",
         "price": 250,
-        "colours": ["brown", "black"],
-        "sizes": [8, 9, 10, 11, 12, 13],
+        "colours": ["orange", "black"],
+        "sizes": [8, 9, 10, 11, 12],
         "inventory": [
-            {
-                "colour": "brown",
-                "size": 9,
-                "quantity": 3
-            },
             {
                 "colour": "black",
                 "size": 8,
                 "quantity": 3
             },
             {
-                "colour": "brown",
+                "colour": "black",
+                "size": 9,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
                 "size": 10,
                 "quantity": 3
             },
             {
-                "colour": "brown",
+                "colour": "black",
                 "size": 11,
+                "quantity": 3
+            },
+            {
+                "colour": "black",
+                "size": 12,
+                "quantity": 3
+            },
+             {
+                "colour": "orange",
+                "size": 8,
+                "quantity": 3
+            },
+            {
+                "colour": "orange",
+                "size": 9,
+                "quantity": 3
+            },
+            {
+                "colour": "orange",
+                "size": 10,
+                "quantity": 3
+            },
+            {
+                "colour": "orange",
+                "size": 11,
+                "quantity": 3
+            },
+            {
+                "colour": "orange",
+                "size": 12,
                 "quantity": 3
             }
         ]
     }
     
 ]
+}

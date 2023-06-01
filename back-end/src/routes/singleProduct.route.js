@@ -1,10 +1,18 @@
 import express from "express";
-import Product from "../models/product.model.js";
+import ProductData from "../models/product_data.model.js";
 
 const router = express.Router();
 
-router.route(`/`).get(async (req, res) => {
-
+router.get('/product/:id', async (req, res) => {
+    try {
+        const product = await ProductData.findById(req.params._id);
+        if (!product) {
+            return res.status(404).send('Product not found');
+        }
+        res.render('ProductPage', { product });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 
 });
 

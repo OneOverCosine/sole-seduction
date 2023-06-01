@@ -1,12 +1,11 @@
 import HeroImage from "./HeroImage";
-import Categories from "./Categories";
+import Brands from "./Brands";
 
 const HomePage = () => {
     return (
         <>
             <HeroImage />
-            <Categories />
-
+            <Brands />
         </>
     )
 }

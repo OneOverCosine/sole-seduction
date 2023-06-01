@@ -2,6 +2,7 @@ import axios from "axios";
 import placeHolder from "../../assets/placeholder-image.jpg";
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
+import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
 
 const CategoryPage = () => {
@@ -22,38 +23,8 @@ const CategoryPage = () => {
 
     // Need to understand how the styles/filters information will be provided before we add that functionality
     // Sample data
-    const products = [
-        {
-            brand: "Balenciaga",
-            style: "Fresh Creps",
-            price: 74.99,
-            image: placeHolder
-        },
-        {
-            brand: "Prada",
-            style: "Hightops",
-            price: 174.99,
-            image: placeHolder
-        },
-        {
-            brand: "Converse",
-            style: "Sneakers",
-            price: 244.99,
-            image: placeHolder
-        },
-        {
-            brand: "Adidas",
-            style: "Trainers",
-            price: 94.99,
-            image: placeHolder
-        },
-        {
-            brand: "Nike",
-            style: "Air Jordans",
-            price: 712.99,
-            image: placeHolder
-        }
-    ];
+
+    const products = mockProductData;
 
     // Link to product page
     const goToProduct = () => { }
@@ -62,11 +33,11 @@ const CategoryPage = () => {
         return products.map((product, index) => {
             return (
                 <Col key={index}>
-                    <Card className="product-card m-1" onClick={goToProduct} style={{ cursor: "pointer" }}>
-                        <Card.Img variant="top" src={product.image} />
+                    <Card className='product-card m-1' onClick={goToProduct}>
+                        <Card.Img variant='top' src={product.img[0]} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>
-                            <Card.Subtitle>{product.style}</Card.Subtitle>
+                            <Card.Subtitle>{product.model}</Card.Subtitle>
                             <Card.Text>£{product.price}</Card.Text>
                         </Card.Body>
                     </Card>

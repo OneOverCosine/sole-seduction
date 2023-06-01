@@ -15,7 +15,7 @@ const productDataSchema = new mongoose.Schema({
     gender: String,
     img: Array,
     description: String,
-    price: Decimal128,
+    price: Number,
     colours: Array,
     sizes: Array,
     inventory: [inventorySchema]

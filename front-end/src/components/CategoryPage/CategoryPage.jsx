@@ -1,25 +1,22 @@
 import axios from "axios";
-import placeHolder from "../../assets/placeholder-image.jpg";
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
 
 const CategoryPage = () => {
-    const [categoryInfo, setCategoryInfo] = useState([]);
+    const [productInfo, setProductInfo] = useState([]);
 
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
             .then(res => {
-                setCategoryInfo(res.data);
+                setProductInfo(res.data);
             })
             .catch(err => {
                 console.log(err);
             });
     }, []);
-
-    console.log("Category info:\n" + categoryInfo);
 
     // Need to understand how the styles/filters information will be provided before we add that functionality
     // Sample data
@@ -30,7 +27,7 @@ const CategoryPage = () => {
     const goToProduct = () => { }
 
     const displayProducts = () => {
-        return products.map((product, index) => {
+        return productInfo.map((product, index) => {
             return (
                 <Col key={index}>
                     <Card className='product-card m-1' onClick={goToProduct}>

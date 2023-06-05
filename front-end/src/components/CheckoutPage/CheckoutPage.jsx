@@ -3,12 +3,12 @@ import {ShopContext} from '../../context/ShopContext'
 import { useContext } from "react";
 import './checkoutPage.css';
 
-import { mockProductData } from '../../mockProducts';
-const product = mockProductData
+// import { mockProductData } from '../../mockProducts';
+// const product = mockProductData
 
 const CheckoutPage = () => {
 
-    const { cartItems, getSubtotal } = useContext(ShopContext)
+    const { cartItems, getSubtotal, products } = useContext(ShopContext)
     const subtotal = getSubtotal()
    
     return (
@@ -19,8 +19,8 @@ const CheckoutPage = () => {
                 </div>
 
                 <div className="cartItems">
-                    {product.map((productItem) => {
-                        if (cartItems[productItem._id] !== 0) {
+                    {products.map((productItem) => {
+                        if (cartItems[productItem._id]?.quantity > 0) {
                             return <ItemSummary data={productItem} key={productItem._id} />
                         } else {
                           return null;  

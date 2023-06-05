@@ -16,7 +16,7 @@ const ItemSummary = (props) => {
                     <p> £{price} </p>
                     <div className="countHandler">
                         <button onClick={() => removeFromCart(_id)}> - </button>
-                        <input value={cartItems[_id]} onChange={(e) => updateCartItemCount(Number(e.target.value), _id)} /> 
+                        <input value={cartItems[_id]?.quantity} onChange={(e) => updateCartItemCount(Number(e.target.value), _id)} /> 
                         <button onClick={() => addToCart(_id)}> + </button>
                     </div>
                 </div>

@@ -109,7 +109,7 @@ const ShopContextProvider = (props) => {
     }
   
     //all the states and functions to be passed into provider to be used in other components
-    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal }
+    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal, products }
     
     console.log(cartItems)
 

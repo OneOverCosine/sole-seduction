@@ -18,4 +18,15 @@ router.route(`/`).get(async (req, res) => {
     }
 });
 
+router.route('/:filter').get(
+    async (req, res) => {
+        ProductData.find({ $or: [{ brand: req.params.filter }, { gender: req.params.filter }] })
+            .then(
+                products => res.send(products)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    });
+
 export { router as categories };

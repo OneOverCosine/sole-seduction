@@ -3,6 +3,7 @@ import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
+import Filter from "../Filter/Filter";
 
 const CategoryPage = () => {
     const [productInfo, setProductInfo] = useState([]);
@@ -43,9 +44,12 @@ const CategoryPage = () => {
     }
 
     return (
-        <Row className="p-2" xs={2} md={4}>
-            {displayProducts()}
-        </Row>
+        <>
+            <Filter />
+            <Row className="p-2" xs={2} md={4}>
+                {displayProducts()}
+            </Row>
+        </>
     )
 }
 

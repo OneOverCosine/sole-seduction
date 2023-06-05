@@ -25,9 +25,9 @@ const NavBar = () => {
                     </Navbar.Brand>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="/categories?gender=Men">Home</Nav.Link>
-                            <Nav.Link href="/categories?gender=Women">Men</Nav.Link>
-                            <Nav.Link href="/">Women</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/categories?gender=Men">Men</Nav.Link>
+                            <Nav.Link href="/categories?gender=Women">Women</Nav.Link>
                             {/* <NavDropdown title="Men" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">
                                     Sport

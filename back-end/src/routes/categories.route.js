@@ -20,7 +20,9 @@ router.route(`/`).get(async (req, res) => {
 
 router.route('/:filter').get(
     async (req, res) => {
-        ProductData.find({ $or: [{ brand: req.params.filter }, { gender: req.params.filter }] })
+        let params = req.params.filter.split('=');
+        params = { [params[0]]: params[1] }
+        ProductData.find(params)
             .then(
                 products => res.send(products)
             )

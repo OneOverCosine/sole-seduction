@@ -3,15 +3,17 @@ import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
+import { useSearchParams, useParams } from 'react-router-dom'
 import Filter from "../Filter/Filter";
 
 const CategoryPage = () => {
     const [productInfo, setProductInfo] = useState([]);
-
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
             .then(res => {
+                console.log(res)
                 setProductInfo(res.data);
             })
             .catch(err => {

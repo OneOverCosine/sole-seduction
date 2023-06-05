@@ -1,6 +1,6 @@
 import React from 'react';
 import placeHolder from '../../assets/placeholder-image.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Card, Row, Col } from 'react-bootstrap';
 
 const Brands = () => {
@@ -30,19 +30,16 @@ const Brands = () => {
         }
     ];
 
-    const goToBrand = () => {
-        // Redirect to category page with params '/brandname'
-        navigate('/')
-    }
-
     const displayBrands = () => {
         return brands.map((brand, index) => {
             return (
                 <Col key={index}>
-                    <Card className='card m-1' onClick={goToBrand} style={{ "cursor": "pointer" }} >
-                        <Card.Img variant='top' src={brand.image} />
-                        <Card.Title>{brand.name}</Card.Title>
-                    </Card>
+                    <Link className='link-dark' to={`/categories?brand=${brand.name}`}>
+                        <Card className='card m-1' style={{ "cursor": "pointer" }} >
+                            <Card.Img variant='top' src={brand.image} />
+                            <Card.Title className='text-center'>{brand.name}</Card.Title>
+                        </Card>
+                    </Link>
                 </Col >
             )
         })

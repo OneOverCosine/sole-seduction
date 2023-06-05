@@ -20,8 +20,9 @@ function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/categories" element={<CategoryPage />} />
+                        <Route path="/categories/:filter" element={<CategoryPage />} />
                         <Route path="/productpage" element={<ProductPage />} />
-                        <Route path="/checkout" element={<CheckoutPage />} />                  
+                        <Route path="/checkout" element={<CheckoutPage />} />
                     </Routes>
                     <Footer />
                 </BrowserRouter>

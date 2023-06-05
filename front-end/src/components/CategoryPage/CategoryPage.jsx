@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 const CategoryPage = () => {
     const [productInfo, setProductInfo] = useState([]);
 
-
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
             .then(res => {

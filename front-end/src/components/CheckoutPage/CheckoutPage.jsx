@@ -1,6 +1,7 @@
 import ItemSummary from "./ItemSummary";
 import {ShopContext} from '../../context/ShopContext'
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import './checkoutPage.css';
 
 // import { mockProductData } from '../../mockProducts';
@@ -31,7 +32,7 @@ const CheckoutPage = () => {
 
                 <div className="checkout">
                     <h3>Subtotal: £{subtotal.toFixed(2)}</h3>
-                    <button>Continue Shopping</button>
+                    <Link to="/categories"><button>Continue Shopping</button></Link>
                     <button>Checkout</button>
                 </div>
             </div>

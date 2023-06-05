@@ -51,7 +51,7 @@
 .box .colours button {
    width: 30px;
    height: 30px;
-   border: 1px solid #333;
+   /* border: 1px solid #333; */
    margin-right: 5px;
    cursor: pointer;
 }

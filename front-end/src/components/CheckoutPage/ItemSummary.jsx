@@ -7,22 +7,31 @@ import {ShopContext} from '../../context/ShopContext'
 const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
     const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
+
+    const items = Object.values(cartItems).filter((item) => item.itemId === _id);
+
     return (
         <>
-            <div className="cartItem">
-                <img src={img[0]}  />
+            {items.map((item, index) => (
+            <div className="cartItem" key={index}>
+                <img src={img[0]} alt={model} />
                 <div className="description">
-                    <p> {model} </p>
+                        <p> {model} </p>
+                        <p>Colour: {item.colour}</p>
+            <p>Size: {item.size}</p>
+            <p>Quantity: {item.quantity}</p>
                     <p> £{price} </p>
                     <div className="countHandler">
-                        <button onClick={() => removeFromCart(_id)}> - </button>
-                        <input value={cartItems[_id]?.quantity} onChange={(e) => updateCartItemCount(Number(e.target.value), _id)} /> 
-                        <button onClick={() => addToCart(_id)}> + </button>
+                        <button onClick={() => removeFromCart(`${_id}-${item.colour}-${item.size}`)}> - </button>
+                            <input
+                                value={item.quantity}
+                                onChange={(e) => updateCartItemCount(Number(e.target.value), `${_id}-${item.colour}-${item.size}`)} /> 
+                        <button onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
                     </div>
                 </div>
 
             </div>
-
+ ))}
         </>
     )
 }

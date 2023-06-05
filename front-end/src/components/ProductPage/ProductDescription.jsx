@@ -70,6 +70,5 @@ const ProductDescription = (props) => {
             </div>
         </div>
     )
-
 }
 export default ProductDescription

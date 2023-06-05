@@ -24,28 +24,28 @@ const getDefaultCart = () => {
     }
 }
 
-const ShopContextProvider = (props) => { 
+const ShopContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState(getDefaultCart());
 
-     useEffect(() => {
+    useEffect(() => {
         // Save cartItems to local storage whenever it changes
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        }, [cartItems]);
-    
+    }, [cartItems]);
+
     //Not working yet!
-     const getSubtotal = () => {
+    const getSubtotal = () => {
         let subtotal = 0
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
                 //find the product to have access to it's price
                 let itemInfo = product.find((productItem) => productItem._id === item)
-                
+
                 //amount of that specific product in the cart * price
                 if (itemInfo) {
                     subtotal += cartItems[item] * itemInfo.price
                 }
-            } 
+            }
         }
 
         return subtotal;
@@ -57,24 +57,24 @@ const ShopContextProvider = (props) => {
     }
 
     const removeFromCart = (itemId) => {
-        setCartItems((prevState) => ({...prevState, [itemId]: prevState[itemId] - 1}))
+        setCartItems((prevState) => ({ ...prevState, [itemId]: prevState[itemId] - 1 }))
 
     }
 
     const updateCartItemCount = (newAmount, itemId) => {
-        setCartItems((prevState) => ({...prevState, [itemId]: newAmount}))
+        setCartItems((prevState) => ({ ...prevState, [itemId]: newAmount }))
     }
-  
+
     //all the states and functions to be passed into provider to be used in other components
     const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal }
-    
+
     console.log(cartItems)
 
     return (
-        <ShopContext.Provider value={ contextValue }>
+        <ShopContext.Provider value={contextValue}>
             {props.children}
         </ShopContext.Provider>
-    )   
+    )
 }
 
 export default ShopContextProvider

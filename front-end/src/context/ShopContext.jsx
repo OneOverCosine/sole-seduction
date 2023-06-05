@@ -15,16 +15,7 @@ const getDefaultCart = () => {
     if (savedCartItems) {
         return JSON.parse(savedCartItems);
     } else {
-        //to get the initial state of the cart
-        // let cart = {}
-        // for (let i = 1; i < product.length + 1; i++) {
-        //     cart[i] = 0;
-        // }
-        const cart = {};
-        products.forEach((product) => {
-            cart[product._id] = { colour: '', size: '', quantity: 0 };
-        });
-        return cart;
+        return {};
     }
 }
 
@@ -37,79 +28,68 @@ const ShopContextProvider = (props) => {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
      }, [cartItems]);
     
-
-    
-    
+  
     const getSubtotal = () => {
-
-
-        // let subtotal = 0
-        // for (const item in cartItems) {
-        //     if (cartItems[item] > 0) {
-        //         //find the product to have access to it's price
-
-        //         let itemInfo = products.find((productItem) => productItem._id === item)
-                
-        //         //amount of that specific product in the cart * price
-        //         if (itemInfo) {
-        //             subtotal += cartItems[item] * itemInfo.price
-        //         }
-        //     } 
-        // }
-
-
-        let subtotal = 0;
-        for (const itemId in cartItems) {
-            const { colour, size, quantity } = cartItems[itemId];
-        if (quantity > 0) {
-            const itemInfo = products.find((product) => product._id === itemId);
+        
+    let subtotal = 0;
+    for (const key in cartItems) {
+      const item = cartItems[key];
+      const itemInfo = products.find((product) => product._id === item.itemId);
         if (itemInfo) {
-          subtotal += quantity * itemInfo.price;
+            subtotal += item.quantity * itemInfo.price;
         }
-      }
     }
-
+    
         return subtotal;
     }
 
     const addToCart = (itemId, colour, size) => {
-        setCartItems((prevState) => ({
-            ...prevState,
-            [itemId]: {
-                colour,
-                size,
-                quantity: prevState[itemId].quantity + 1,
-            }
-            // prevState[itemId] + 1
-        }))
 
+        setCartItems((prevState) => {
+            const key = `${itemId}-${colour}-${size}`;
+            const updatedItems = { ...prevState };
+            if (updatedItems[key]) {
+                updatedItems[key].quantity += 1;
+            } else {
+                updatedItems[key] = {
+                    itemId,
+                    colour,
+                    size,
+                    quantity: 1,
+                };
+            }
+            return updatedItems;
+        });
     }
 
-    const removeFromCart = (itemId) => {
-        setCartItems((prevState) => ({
-            ...prevState,
-            [itemId]: {
-            ...prevState[itemId],
-            quantity: prevState[itemId].quantity - 1,    
+    const removeFromCart = (key) => {
+ 
+        setCartItems((prevState) => {
+            const updatedItems = { ...prevState };
+            if (updatedItems[key].quantity > 1) {
+                updatedItems[key].quantity -= 1;
+            } else {
+                delete updatedItems[key];
             }
-            // prevState[itemId] - 1
-        }))
-
+            return updatedItems;
+        });
     }
 
-    const updateCartItemCount = (newAmount, itemId) => {
-        setCartItems((prevState) => ({
-            ...prevState,
-            [itemId]: {
-                ...prevState[itemId],
-                quantity: newAmount, 
-            } 
-            // newAmount
-        }))
+    const updateCartItemCount = (newAmount, key) => {
+ 
+        setCartItems((prevState) => {
+            const updatedItems = { ...prevState };
+            if (newAmount > 0) {
+                updatedItems[key].quantity = newAmount;
+            } else {
+                delete updatedItems[key];
+            }
+            return updatedItems;
+        });
     }
   
     //all the states and functions to be passed into provider to be used in other components
-    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal }
+    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal, products }
     
     console.log(cartItems)
 

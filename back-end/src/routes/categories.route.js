@@ -8,7 +8,6 @@ also used to filter products by brand and all that*/
 router.route(`/`).get(async (req, res) => {
     try {
         ProductData.find({}).then((products) => {
-            console.log(products);
             res.send(products);
         }).catch(err => {
             console.error(err);
@@ -18,5 +17,16 @@ router.route(`/`).get(async (req, res) => {
         console.error(err);
     }
 });
+
+router.route('/:filter').get(
+    async (req, res) => {
+        ProductData.find({ $or: [{ brand: req.params.filter }, { gender: req.params.filter }] })
+            .then(
+                products => res.send(products)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    });
 
 export { router as categories };

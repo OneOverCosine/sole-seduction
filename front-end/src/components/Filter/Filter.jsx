@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Button, ToggleButton, Offcanvas } from 'react-bootstrap'
+import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap'
 
 const Filter = () => {
 
     const [show, setShow] = useState(false);
     const [checked, setChecked] = useState(false);
+    const [disabled, setDisabled] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -24,6 +25,16 @@ const Filter = () => {
         }
     }
 
+    const filterProducts = () => {
+        setDisabled(true);
+
+        setTimeout(() => {
+            setDisabled(false)
+            setShow(false);
+        }, 2000);
+
+    }
+
     return (
         <>
             <Button className='mt-1' variant='secondary' onClick={handleShow}>
@@ -37,6 +48,7 @@ const Filter = () => {
                 <Offcanvas.Body>
                     <h5>Gender</h5>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -46,6 +58,7 @@ const Filter = () => {
                         Men
                     </ToggleButton>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -57,6 +70,7 @@ const Filter = () => {
                     <hr />
                     <h5>Brand</h5>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -66,6 +80,7 @@ const Filter = () => {
                         Doc Marten's
                     </ToggleButton>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -75,6 +90,7 @@ const Filter = () => {
                         Prada
                     </ToggleButton>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -86,6 +102,7 @@ const Filter = () => {
                     <hr />
                     <h5>Colour</h5>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -95,6 +112,7 @@ const Filter = () => {
                         Black
                     </ToggleButton>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -104,6 +122,7 @@ const Filter = () => {
                         Brown
                     </ToggleButton>
                     <ToggleButton
+                        disabled={disabled}
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
@@ -113,6 +132,15 @@ const Filter = () => {
                         Blue
                     </ToggleButton>
                     <hr />
+
+                    <Button disabled={disabled} className='m-1' onClick={filterProducts}>
+                        Filter Products&nbsp;
+                        {disabled &&
+                            <Spinner variant='light' animation="border" role="status" size="sm">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                        }
+                    </Button>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

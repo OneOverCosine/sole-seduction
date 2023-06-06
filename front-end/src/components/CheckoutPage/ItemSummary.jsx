@@ -18,9 +18,9 @@ const ItemSummary = (props) => {
                 <div className="description">
                         <p> {model} </p>
                         <p>Colour: {item.colour}</p>
-            <p>Size: {item.size}</p>
-            <p>Quantity: {item.quantity}</p>
-                    <p> £{price} </p>
+                        <p>Size: {item.size}</p>
+                        <p>Quantity: {item.quantity}</p>
+                        <p> £{price} </p>
                     <div className="countHandler">
                         <button onClick={() => removeFromCart(`${_id}-${item.colour}-${item.size}`)}> - </button>
                             <input
@@ -29,9 +29,8 @@ const ItemSummary = (props) => {
                         <button onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
                     </div>
                 </div>
-
             </div>
- ))}
+            ))}
         </>
     )
 }

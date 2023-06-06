@@ -16,21 +16,20 @@ const ProductImages = (props) => {
         <>
             <div className="images">
                 <div className="main-image">
-                    <img src={props.img[currentImageIndex]} alt="product image" />
-                
+                    {props.img.length > 0 && (
+                        <img src={props.img[currentImageIndex]} alt="product image" />
+                    )}
+                    {/* <img src={props.img[currentImageIndex]} alt="product image" /> */}
                 </div>
 
                 <div className="gallery-image">
                     {
-                        props.img.map((image, index) => (
-                            <img src={image} alt="thumbnail" onClick={ () => handleThumbnail(index) } key={index}/>
-                            
+                        props.img && props.img.map((image, index) => (
+                            <img src={image} alt="thumbnail" onClick={ () => handleThumbnail(index) } key={index}/>      
                         ))
                     }
                 </div>
-
             </div>
-    
        </>
     )
 }

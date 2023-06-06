@@ -4,10 +4,11 @@ import { Row, Col, Card } from "react-bootstrap";
 import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
 import Filter from "../Filter/Filter";
+import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
+    const navigate = useNavigate();
     const [productInfo, setProductInfo] = useState([]);
-
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
@@ -25,13 +26,15 @@ const CategoryPage = () => {
     const products = mockProductData;
 
     // Link to product page
-    const goToProduct = () => { }
+    const goToProduct = (productId) => {
+        navigate(`/product/${productId}`)
+     }
 
     const displayProducts = () => {
         return productInfo.map((product, index) => {
             return (
                 <Col key={index}>
-                    <Card className='product-card m-1' onClick={goToProduct}>
+                    <Card className='product-card m-1'key={product.id} onClick={() => goToProduct(product._id)}>
                         <Card.Img variant='top' src={product.img[0]} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>

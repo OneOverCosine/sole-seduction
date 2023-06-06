@@ -9,7 +9,7 @@ const CategoryPage = () => {
     const [productInfo, setProductInfo] = useState([]);
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/Men`)
             .then(res => {
                 setProductInfo(res.data);
             })

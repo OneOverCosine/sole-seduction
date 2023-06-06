@@ -23,6 +23,7 @@ const Filter = () => {
             setFilters(filters.toSpliced(filters.indexOf(value), 1))
         }
     }
+
     return (
         <>
             <Button className='mt-1' variant='secondary' onClick={handleShow}>

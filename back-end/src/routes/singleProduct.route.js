@@ -16,4 +16,17 @@ router.get('/product/:id', async (req, res) => {
 
 });
 
+router.route(`/`).get(async (req, res) => {
+    try {
+        ProductData.find({}).then((products) => {
+            res.send(products);
+        }).catch(err => {
+            console.error(err);
+        })
+    }
+    catch (err) {
+        console.error(err);
+    }
+});
+
 export { router as products };

@@ -8,8 +8,10 @@ const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
     const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
 
-    const items = Object.values(cartItems).filter((item) => item.itemId === _id);
+    // const { products, getSubtotal } = props;
 
+    const items = Object.values(cartItems).filter((item) => item.itemId === _id);
+   
     return (
         <>
             {items.map((item, index) => (

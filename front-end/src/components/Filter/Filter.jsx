@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap'
 
-const Filter = () => {
+const Filter = ({ getFilters }) => {
 
     const [show, setShow] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -17,7 +17,6 @@ const Filter = () => {
     }
 
     const handleSelect = value => {
-
         if (!filters.includes(value))
             setFilters([...filters, value]);
         else {
@@ -27,12 +26,10 @@ const Filter = () => {
 
     const filterProducts = () => {
         setDisabled(true);
-
-        setTimeout(() => {
-            setDisabled(false)
-            setShow(false);
-        }, 2000);
-
+        getFilters(filters);
+        setDisabled(false);
+        setShow(false);
+        console.log(`Filters in Filter: ${filters}`);
     }
 
     return (

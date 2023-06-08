@@ -8,11 +8,11 @@ import Filter from "../Filter/Filter";
 const CategoryPage = () => {
     const [productInfo, setProductInfo] = useState([]);
     const [searchParams] = useSearchParams();
-    const [filters, setFilters] = useState([]);
+    //const [filters, setFilters] = useState([]);
 
     useEffect(() => {
         //console.log(`Search params: ${filters.toString()}`)
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${filters.toString()}`)
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
             .then(res => {
                 setProductInfo(res.data);
             })
@@ -24,11 +24,11 @@ const CategoryPage = () => {
     // Link to product page 
     const goToProduct = () => { }
 
-    const getFilters = (selectedFilters) => {
-        // this seems to lag behind the value in Filter...
-        setFilters(selectedFilters);
-        console.log(`Filters in Category: ${filters}`)
-    }
+    // const getFilters = (selectedFilters) => {
+    //     // this seems to lag behind the value in Filter...
+    //     setFilters(selectedFilters);
+    //     console.log(`Filters in Category: ${filters}`)
+    // }
 
     const displayProducts = () => {
         return productInfo.map((product, index) => {
@@ -49,7 +49,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            <Filter getFilters={getFilters} />
+            <Filter />
             <Row className="p-2" xs={2} md={4}>
                 {displayProducts()}
             </Row>

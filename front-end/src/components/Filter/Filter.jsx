@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap'
 
-const Filter = ({ getFilters }) => {
+const Filter = () => {
 
     const [show, setShow] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -9,6 +10,8 @@ const Filter = ({ getFilters }) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const navigate = useNavigate();
 
     const [filters, setFilters] = useState([]);
 
@@ -25,11 +28,19 @@ const Filter = ({ getFilters }) => {
     }
 
     const filterProducts = () => {
+        // set the url here...
         setDisabled(true);
-        getFilters(filters);
+
+        console.log(`filters[0]: ${filters[0]}`);
+        let currentUrlParams = new URLSearchParams(window.location.search);
+        currentUrlParams.set('brand', filters[0]);
+        let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
+        console.log(`new url: ${newUrl}`);
+
+        navigate(newUrl);
+
         setDisabled(false);
         setShow(false);
-        console.log(`Filters in Filter: ${filters}`);
     }
 
     return (
@@ -103,8 +114,8 @@ const Filter = ({ getFilters }) => {
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
-                        checked={selected("Black")}
-                        onClick={() => handleSelect("Black")}
+                        checked={selected("black")}
+                        onClick={() => handleSelect("black")}
                     >
                         Black
                     </ToggleButton>
@@ -113,8 +124,8 @@ const Filter = ({ getFilters }) => {
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
-                        checked={selected('Brown')}
-                        onClick={() => handleSelect('Brown')}
+                        checked={selected('brown')}
+                        onClick={() => handleSelect('brown')}
                     >
                         Brown
                     </ToggleButton>
@@ -123,8 +134,8 @@ const Filter = ({ getFilters }) => {
                         className='m-1'
                         variant="outline-secondary"
                         type="checkbox"
-                        checked={selected('Blue')}
-                        onClick={() => handleSelect('Blue')}
+                        checked={selected('blue')}
+                        onClick={() => handleSelect('blue')}
                     >
                         Blue
                     </ToggleButton>

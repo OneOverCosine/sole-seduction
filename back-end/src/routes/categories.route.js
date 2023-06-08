@@ -21,10 +21,10 @@ router.route(`/`).get(async (req, res) => {
 
 router.route('/:filter').get(
     async (req, res) => {
-        let params = req.params.filter.split(",");
-        // params = { "colours": `{$all: ${params}}` } 
-        params = { "colours": { $eq: "Black", $eq: "Brown" } };
+        let params = req.params.filter.split("=");
+        params = { [params[0]]: params[1] };
         console.log(params);
+
         ProductData.find(params)
             .then(
                 products => res.send(products)

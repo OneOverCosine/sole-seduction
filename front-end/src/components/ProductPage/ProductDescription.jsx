@@ -37,7 +37,7 @@ const ProductDescription = (props) => {
                                 key={colour}
                                 style={{
                                     background: colour,
-                                    border: selectedColour === colour ? "2px solid lightseagreen" : "1px solid #333"
+                                    border: selectedColour === colour ? "3px solid lightseagreen" : "1px solid #333"
                                 }}
                                 onClick={() => handleColorSelection(colour)}
                                 >
@@ -53,7 +53,7 @@ const ProductDescription = (props) => {
                             <button
                                 key={size}
                                 style={{
-                                    border: selectedSize === size ? "2px solid lightseagreen" : "none"
+                                    border: selectedSize === size ? "3px solid lightseagreen" : "none"
                                 }}
                                 onClick={() => handleSizeSelection(size)}>
                                 {size}

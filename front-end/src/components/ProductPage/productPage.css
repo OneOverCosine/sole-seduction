@@ -119,6 +119,10 @@
     
 }
 
+.cart-button:active {
+    background-color: red;
+}
+
 @media (max-width: 500px) {
     .gallery-image {
         height: 50px;

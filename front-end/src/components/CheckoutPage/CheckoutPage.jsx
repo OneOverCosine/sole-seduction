@@ -36,22 +36,15 @@ const CheckoutPage = () => {
                 </div>
 
                 <div className="cartItems">
-                    {products.length > 0 && products.map((productItem) => {
-                        if (cartItems[productItem._id]?.quantity > 0) {
-                            console.log
+                    {products.length > 0 && products.map((productItem) => {                  
                             return (
                                 <ItemSummary
                                 data={productItem}
                                 key={productItem._id}
                                 products={products}
                                 getSubtotal={getSubtotal}
-                            />
-                            )
-                        } else {
-                          return null;  
-                        }
-                    })}
-
+                            /> 
+                    )})}
                 </div>
 
                 <div className="checkout">

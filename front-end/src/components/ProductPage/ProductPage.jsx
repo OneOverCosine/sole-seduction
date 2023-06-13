@@ -47,11 +47,13 @@ const ProductPage = ({ props }) => {
         </> */}
         {/* )); */}
     
-    console.log(product);
+    // console.log(product);
     
     const displayProductDetails = (
         <div className="product-page" key={product._id}>
             <ProductImages img={product.img} />
+
+
             <ProductDescription
             id={product._id}
             model={product.model}

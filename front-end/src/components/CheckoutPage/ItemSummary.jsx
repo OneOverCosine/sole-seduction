@@ -8,8 +8,10 @@ const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
     const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
 
-    const items = Object.values(cartItems).filter((item) => item.itemId === _id);
+    // const { products, getSubtotal } = props;
 
+    const items = Object.values(cartItems).filter((item) => item.itemId === _id);
+   
     return (
         <>
             {items.map((item, index) => (
@@ -18,9 +20,9 @@ const ItemSummary = (props) => {
                 <div className="description">
                         <p> {model} </p>
                         <p>Colour: {item.colour}</p>
-            <p>Size: {item.size}</p>
-            <p>Quantity: {item.quantity}</p>
-                    <p> £{price} </p>
+                        <p>Size: {item.size}</p>
+                        <p>Quantity: {item.quantity}</p>
+                        <p> £{price} </p>
                     <div className="countHandler">
                         <button onClick={() => removeFromCart(`${_id}-${item.colour}-${item.size}`)}> - </button>
                             <input
@@ -29,9 +31,8 @@ const ItemSummary = (props) => {
                         <button onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
                     </div>
                 </div>
-
             </div>
- ))}
+            ))}
         </>
     )
 }

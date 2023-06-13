@@ -9,7 +9,23 @@ import './checkoutPage.css';
 
 const CheckoutPage = () => {
 
-    const { cartItems, getSubtotal, products } = useContext(ShopContext)
+    const { cartItems, products } = useContext(ShopContext)
+    // const subtotal = getSubtotal()
+
+    const getSubtotal = () => {
+        
+    let subtotal = 0;
+    for (const key in cartItems) {
+      const item = cartItems[key];
+      const itemInfo = products.find((product) => product._id === item.itemId);
+        if (itemInfo) {
+            subtotal += item.quantity * itemInfo.price;
+        }
+    }
+    
+        return subtotal;
+    }
+
     const subtotal = getSubtotal()
    
     return (
@@ -20,14 +36,15 @@ const CheckoutPage = () => {
                 </div>
 
                 <div className="cartItems">
-                    {products.map((productItem) => {
-                        if (cartItems[productItem._id]?.quantity > 0) {
-                            return <ItemSummary data={productItem} key={productItem._id} />
-                        } else {
-                          return null;  
-                        }
-                    })}
-
+                    {products.length > 0 && products.map((productItem) => {                  
+                            return (
+                                <ItemSummary
+                                data={productItem}
+                                key={productItem._id}
+                                products={products}
+                                getSubtotal={getSubtotal}
+                            /> 
+                    )})}
                 </div>
 
                 <div className="checkout">

@@ -21,18 +21,18 @@ const getDefaultCart = () => {
 }
 
 
-const ShopContextProvider = (props) => { 
+const ShopContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState(getDefaultCart());
     const [products, setProducts] = useState([]);
 
-     useEffect(() => {
-        // Save cartItems to local storage whenever it changes
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-     }, [cartItems]);
-    
+    // useEffect(() => {
+    //     // Save cartItems to local storage whenever it changes
+    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    // }, [cartItems]);
+
     useEffect(() => {
-        
+
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}products`)
             .then(response => {
                 setProducts(response.data);
@@ -43,41 +43,39 @@ const ShopContextProvider = (props) => {
     }, []);
 
     const addToCart = (itemId, colour, size) => {
-    console.log('addToCart called');
-        setCartItems((prevState) => {
-            const key = `${itemId}-${colour}-${size}`;
-            const updatedItems = { ...prevState };
-            if (updatedItems[key]) {
-               
-                updatedItems[key].quantity += 1
-            } else {
-                updatedItems[key] = {
-                    itemId,
-                    colour,
-                    size,
-                    quantity: 1,
-                };
-            }
-            return updatedItems;
-        });
+
+        const key = `${itemId}-${colour}-${size}`;
+        const updatedItems = { ...cartItems };
+
+        if (updatedItems[key]) {
+            updatedItems[key].quantity += 1;
+        } else {
+            updatedItems[key] = {
+                itemId,
+                colour,
+                size,
+                quantity: 1,
+            };
+        }
+
+        setCartItems(updatedItems);
     }
 
     const removeFromCart = (key) => {
-      
-        setCartItems((prevState) => {
-            const updatedItems = { ...prevState };
-            if (updatedItems[key].quantity > 1) {
-              
-                updatedItems[key].quantity -= 1
-            } else {
-                delete updatedItems[key];
-            }
-            return updatedItems;
-        });
+
+        const updatedItems = { ...cartItems };
+
+        if (updatedItems[key].quantity > 1) {
+            updatedItems[key].quantity -= 1
+        } else {
+            delete updatedItems[key];
+        }
+
+        setCartItems(updatedItems);
     }
 
     const updateCartItemCount = (newAmount, key) => {
- 
+
         setCartItems((prevState) => {
             const updatedItems = { ...prevState };
             if (newAmount > 0) {
@@ -88,17 +86,15 @@ const ShopContextProvider = (props) => {
             return updatedItems;
         });
     }
-  
+
     //all the states and functions to be passed into provider to be used in other components
     const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, products }
-    
-    console.log(cartItems)
 
     return (
-        <ShopContext.Provider value={ contextValue }>
+        <ShopContext.Provider value={contextValue}>
             {props.children}
         </ShopContext.Provider>
-    )   
+    )
 }
 
 export default ShopContextProvider

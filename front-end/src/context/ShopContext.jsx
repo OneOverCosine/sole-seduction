@@ -26,10 +26,10 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState(getDefaultCart());
     const [products, setProducts] = useState([]);
 
-    // useEffect(() => {
-    //     // Save cartItems to local storage whenever it changes
-    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    // }, [cartItems]);
+    useEffect(() => {
+        // Save cartItems to local storage whenever it changes
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }, [cartItems]);
 
     useEffect(() => {
 

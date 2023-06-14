@@ -21,7 +21,7 @@ const ItemSummary = (props) => {
                         <h4> {model} </h4>
                         <div className="d-flex">
                             <h6 className="align-self-center">Colour: &nbsp;</h6>
-                            <div className='colour m-1' style={{
+                            <div className='colour m-1 border border-dark' style={{
                                 background: item.colour,
                             }}></div>
                         </div>

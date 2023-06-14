@@ -1,17 +1,19 @@
 import axios from "axios";
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
-import { mockProductData } from '../../mockProducts';
 import { useEffect, useState } from 'react';
+import { useSearchParams, useParams } from 'react-router-dom'
 import Filter from "../Filter/Filter";
 import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
     const navigate = useNavigate();
     const [productInfo, setProductInfo] = useState([]);
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories`)
+        console.log("useEffect called");
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
             .then(res => {
                 setProductInfo(res.data);
             })
@@ -20,21 +22,16 @@ const CategoryPage = () => {
             });
     }, []);
 
-    // Need to understand how the styles/filters information will be provided before we add that functionality
-    // Sample data
-
-    const products = mockProductData;
-
     // Link to product page
     const goToProduct = (productId) => {
         navigate(`/product/${productId}`)
-     }
+    }
 
     const displayProducts = () => {
         return productInfo.map((product, index) => {
             return (
                 <Col key={index}>
-                    <Card className='product-card m-1'key={product.id} onClick={() => goToProduct(product._id)}>
+                    <Card className='product-card m-1' key={product.id} onClick={() => goToProduct(product._id)}>
                         <Card.Img variant='top' src={product.img[0]} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>

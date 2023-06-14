@@ -7,11 +7,12 @@ also used to filter products by brand and all that*/
 
 router.route(`/`).get(async (req, res) => {
     try {
-        ProductData.find({}).then((products) => {
-            res.send(products);
-        }).catch(err => {
-            console.error(err);
-        })
+        ProductData.find({})
+            .then(
+                products => res.send(products)
+            ).catch(
+                err => console.error(err)
+            )
     }
     catch (err) {
         console.error(err);
@@ -20,7 +21,13 @@ router.route(`/`).get(async (req, res) => {
 
 router.route('/:filter').get(
     async (req, res) => {
-        ProductData.find({ $or: [{ brand: req.params.filter }, { gender: req.params.filter }] })
+        let params = req.params.filter.split(/[=&]/);
+        let filters = params[1].split(",");
+
+        const query = { [params[0]]: { $in: filters } };
+        console.log(query);
+
+        ProductData.find(query)
             .then(
                 products => res.send(products)
             )

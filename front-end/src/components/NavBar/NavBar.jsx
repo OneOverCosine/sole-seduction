@@ -12,7 +12,7 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark">
+            <Navbar className='fixed-top' bg="dark" variant="dark">
                 <Container className='fluid'>
                     <Navbar.Brand href="/">
                         <img

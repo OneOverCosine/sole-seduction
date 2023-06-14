@@ -2,9 +2,10 @@
 
 //props.children is a special prop that is used to access and render the content passed between the opening and closing tags of a component. It allows components to be used as containers or wrappers around other components or content.
 
-import { createContext, useState, useEffect } from "react";
-import { mockProductData } from '../mockProducts';
-const product = mockProductData
+import { createContext, useState, useEffect, useReducer } from "react";
+import axios from 'axios';
+// import { mockProductData } from '../mockProducts';
+// const products = mockProductData
 
 export const ShopContext = createContext(null);
 
@@ -15,66 +16,89 @@ const getDefaultCart = () => {
     if (savedCartItems) {
         return JSON.parse(savedCartItems);
     } else {
-        //to get the initial state of the cart 
-        let cart = {}
-        for (let i = 1; i < product.length + 1; i++) {
-            cart[i] = 0;
-        }
-        return cart;
+        return {};
     }
 }
 
-const ShopContextProvider = (props) => {
+
+const ShopContextProvider = (props) => { 
 
     const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [products, setProducts] = useState([]);
 
-    useEffect(() => {
+     useEffect(() => {
         // Save cartItems to local storage whenever it changes
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    }, [cartItems]);
+     }, [cartItems]);
+    
+    useEffect(() => {
+        
+        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}products`)
+            .then(response => {
+                setProducts(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
 
-    //Not working yet!
-    const getSubtotal = () => {
-        let subtotal = 0
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                //find the product to have access to it's price
-                let itemInfo = product.find((productItem) => productItem._id === item)
-
-                //amount of that specific product in the cart * price
-                if (itemInfo) {
-                    subtotal += cartItems[item] * itemInfo.price
-                }
+    const addToCart = (itemId, colour, size) => {
+    console.log('addToCart called');
+        setCartItems((prevState) => {
+            const key = `${itemId}-${colour}-${size}`;
+            const updatedItems = { ...prevState };
+            if (updatedItems[key]) {
+               
+                updatedItems[key].quantity += 1
+            } else {
+                updatedItems[key] = {
+                    itemId,
+                    colour,
+                    size,
+                    quantity: 1,
+                };
             }
-        }
-
-        return subtotal;
+            return updatedItems;
+        });
     }
 
-    const addToCart = (itemId) => {
-        setCartItems((prevState) => ({ ...prevState, [itemId]: prevState[itemId] + 1 }))
-
+    const removeFromCart = (key) => {
+      
+        setCartItems((prevState) => {
+            const updatedItems = { ...prevState };
+            if (updatedItems[key].quantity > 1) {
+              
+                updatedItems[key].quantity -= 1
+            } else {
+                delete updatedItems[key];
+            }
+            return updatedItems;
+        });
     }
 
-    const removeFromCart = (itemId) => {
-        setCartItems((prevState) => ({ ...prevState, [itemId]: prevState[itemId] - 1 }))
-
+    const updateCartItemCount = (newAmount, key) => {
+ 
+        setCartItems((prevState) => {
+            const updatedItems = { ...prevState };
+            if (newAmount > 0) {
+                updatedItems[key].quantity = newAmount;
+            } else {
+                delete updatedItems[key];
+            }
+            return updatedItems;
+        });
     }
-
-    const updateCartItemCount = (newAmount, itemId) => {
-        setCartItems((prevState) => ({ ...prevState, [itemId]: newAmount }))
-    }
-
+  
     //all the states and functions to be passed into provider to be used in other components
-    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, getSubtotal }
-
+    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, products }
+    
     console.log(cartItems)
 
     return (
-        <ShopContext.Provider value={contextValue}>
+        <ShopContext.Provider value={ contextValue }>
             {props.children}
         </ShopContext.Provider>
-    )
+    )   
 }
 
 export default ShopContextProvider

@@ -5,6 +5,7 @@ import environmentConfig from './src/environmentConfig.js';
 import express from 'express';
 
 import { categories } from './src/routes/categories.route.js';
+import { products } from './src/routes/singleProduct.route.js';
 
 const app = express();
 environmentConfig;
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/categories", categories);
+app.use("/products", products);
 
 app.listen(process.env.PORT, () => {
     console.log(`Connected to backend on port ${process.env.PORT}`);

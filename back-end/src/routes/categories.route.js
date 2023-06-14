@@ -22,11 +22,12 @@ router.route(`/`).get(async (req, res) => {
 router.route('/:filter').get(
     async (req, res) => {
         let params = req.params.filter.split(/[=&]/);
+        let filters = params[1].split(",");
 
-        params = { [params[0]]: params[1] };
-        console.log(params);
+        const query = { [params[0]]: { $in: filters } };
+        console.log(query);
 
-        ProductData.find(params)
+        ProductData.find(query)
             .then(
                 products => res.send(products)
             )

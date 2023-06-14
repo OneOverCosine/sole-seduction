@@ -39,7 +39,7 @@ const Filter = () => {
 
         console.log(`filters[0]: ${filters[0]}`);
         let currentUrlParams = new URLSearchParams(window.location.search);
-        currentUrlParams.set('brand', filters[0]);
+        currentUrlParams.set('colours', filters); // working on here now
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
         //console.log(`new url: ${newUrl}`);
 

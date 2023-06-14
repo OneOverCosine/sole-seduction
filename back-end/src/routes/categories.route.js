@@ -21,7 +21,8 @@ router.route(`/`).get(async (req, res) => {
 
 router.route('/:filter').get(
     async (req, res) => {
-        let params = req.params.filter.split("=");
+        let params = req.params.filter.split(/[=&]/);
+
         params = { [params[0]]: params[1] };
         console.log(params);
 

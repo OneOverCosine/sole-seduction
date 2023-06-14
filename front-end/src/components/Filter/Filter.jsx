@@ -1,47 +1,53 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { useNavigate, redirect } from 'react-router-dom';
+import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
+
 
 const Filter = () => {
 
     const [show, setShow] = useState(false);
     const [checked, setChecked] = useState(false);
     const [disabled, setDisabled] = useState(false);
+    const [filters, setFilters] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const navigate = useNavigate();
 
-    const [filters, setFilters] = useState([]);
-
     const selected = value => {
-        return filters.includes(value)
+        return filters.includes(value);
     }
 
     const handleSelect = value => {
         if (!filters.includes(value))
             setFilters([...filters, value]);
         else {
-            setFilters(filters.toSpliced(filters.indexOf(value), 1))
+            setFilters(filters.toSpliced(filters.indexOf(value), 1));
         }
     }
 
-    const filterProducts = () => {
-        // set the url here...
+    const handleFilter = () => {
         setDisabled(true);
+        applyFilter();
+
+        setDisabled(false);
+        setShow(false);
+    };
+
+    const applyFilter = () => {
 
         console.log(`filters[0]: ${filters[0]}`);
         let currentUrlParams = new URLSearchParams(window.location.search);
         currentUrlParams.set('brand', filters[0]);
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
-        console.log(`new url: ${newUrl}`);
+        //console.log(`new url: ${newUrl}`);
 
-        navigate(newUrl);
-
-        setDisabled(false);
-        setShow(false);
+        navigate(newUrl, { replace: true });
+        window.location.reload(false);
     }
+
+
 
     return (
         <>
@@ -141,7 +147,7 @@ const Filter = () => {
                     </ToggleButton>
                     <hr />
 
-                    <Button disabled={disabled} className='m-1' onClick={filterProducts}>
+                    <Button disabled={disabled} className='m-1' onClick={handleFilter}>
                         Filter Products&nbsp;
                         {disabled &&
                             <Spinner variant='light' animation="border" role="status" size="sm">

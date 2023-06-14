@@ -3,6 +3,7 @@
 
 import { useContext } from "react";
 import { ShopContext } from '../../context/ShopContext'
+import { Link } from "react-router-dom";
 
 const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
@@ -19,6 +20,7 @@ const ItemSummary = (props) => {
                     <img src={img[0]} alt={model} />
                     <div className="description">
                         <h4> {model} </h4>
+                        <Link to={`/product/${item.itemId}`}>Go to product</Link>
                         <div className="d-flex">
                             <h6 className="align-self-center">Colour: &nbsp;</h6>
                             <div className='colour m-1 border border-dark' style={{

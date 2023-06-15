@@ -1,15 +1,12 @@
 import ProductImages from "./ProductImages";
 import ProductDescription from "./ProductDescription";
-// import { mockProductData } from '../../mockProducts';
-// const product = mockProductData
 import './productPage.css';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const ProductPage = ({ props }) => {
+const ProductPage = () => {
     const { productId } = useParams();
-    // const [product, setProduct] = useState([]);
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -25,35 +22,10 @@ const ProductPage = ({ props }) => {
     if (!product) {
     return <p>Loading...</p>; 
   }
-
-    // const displayProductDetails = product.map(productItem => (
-        // <>
-            {/* <div className="product-page" key={productItem._id}> */}
-                {/* <ProductImages 
-                    // key={productItem._id}
-                    img={productItem.img}
-                />
-                
-                <ProductDescription 
-                    // key={productItem.model}
-                    id={productItem._id}
-                    model={productItem.model}
-                    price={productItem.price}
-                    description={productItem.description}
-                    colours={productItem.colours}
-                    sizes={productItem.sizes}
-                />
-            </div>
-        </> */}
-        {/* )); */}
-    
-    // console.log(product);
-    
+  
     const displayProductDetails = (
         <div className="product-page" key={product._id}>
             <ProductImages img={product.img} />
-
-
             <ProductDescription
             id={product._id}
             model={product.model}

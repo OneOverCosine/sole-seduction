@@ -4,8 +4,6 @@
 
 import { createContext, useState, useEffect, useReducer } from "react";
 import axios from 'axios';
-// import { mockProductData } from '../mockProducts';
-// const products = mockProductData
 
 export const ShopContext = createContext(null);
 
@@ -19,7 +17,6 @@ const getDefaultCart = () => {
         return {};
     }
 }
-
 
 const ShopContextProvider = (props) => {
 

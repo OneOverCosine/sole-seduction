@@ -3,7 +3,7 @@
 //props.children is a special prop that is used to access and render the content passed between the opening and closing tags of a component. It allows components to be used as containers or wrappers around other components or content.
 
 import { createContext, useState, useEffect, useReducer } from "react";
-import axios from 'axios';
+import { products } from '../sole_seduction.product_data';
 
 export const ShopContext = createContext(null);
 
@@ -21,23 +21,11 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState(getDefaultCart());
-    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         // Save cartItems to local storage whenever it changes
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }, [cartItems]);
-
-    useEffect(() => {
-
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}products`)
-            .then(response => {
-                setProducts(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
 
     const addToCart = (itemId, colour, size) => {
 

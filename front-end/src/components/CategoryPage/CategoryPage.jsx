@@ -1,37 +1,30 @@
-import axios from "axios";
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom'
 import Filter from "../Filter/Filter";
 import { useNavigate } from 'react-router-dom';
+import { products } from '../../sole_seduction.product_data.js';
+
 
 const CategoryPage = () => {
     const navigate = useNavigate();
-    const [productInfo, setProductInfo] = useState([]);
+    //const [productInfo, setProductInfo] = useState([]);
     const [searchParams] = useSearchParams();
-
-    useEffect(() => {
-        console.log("useEffect called");
-        axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
-            .then(res => {
-                setProductInfo(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }, []);
 
     // Link to product page
     const goToProduct = (productId) => {
         navigate(`/product/${productId}`)
     }
 
+    console.log(products)
+
     const displayProducts = () => {
-        return productInfo.map((product, index) => {
+        return products.map((product, index) => {
+            console.log(product)
             return (
                 <Col key={index}>
-                    <Card className='product-card m-1' key={product.id} onClick={() => goToProduct(product._id)}>
+                    <Card className='product-card m-1' onClick={() => goToProduct(product._id)}>
                         <Card.Img variant='top' src={product.img[0]} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>

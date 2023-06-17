@@ -37,7 +37,7 @@ const Filter = () => {
 
     const applyFilter = () => {
 
-        console.log(`filters[0]: ${filters[0]}`);
+        console.log(`filters: ${filters}`);
         let currentUrlParams = new URLSearchParams(window.location.search);
         currentUrlParams.set('colours', filters); // working on here now
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
@@ -63,7 +63,7 @@ const Filter = () => {
                     <h5>Gender</h5>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 gender'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('Men')}
@@ -73,7 +73,7 @@ const Filter = () => {
                     </ToggleButton>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 gender'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('Women')}
@@ -85,7 +85,7 @@ const Filter = () => {
                     <h5>Brand</h5>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 brand'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected("Doc Marten's")}
@@ -95,7 +95,7 @@ const Filter = () => {
                     </ToggleButton>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 brand'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('Prada')}
@@ -105,7 +105,7 @@ const Filter = () => {
                     </ToggleButton>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 brand'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('Balenciaga')}
@@ -117,7 +117,7 @@ const Filter = () => {
                     <h5>Colour</h5>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 colours'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected("black")}
@@ -127,7 +127,7 @@ const Filter = () => {
                     </ToggleButton>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 colours'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('brown')}
@@ -137,7 +137,7 @@ const Filter = () => {
                     </ToggleButton>
                     <ToggleButton
                         disabled={disabled}
-                        className='m-1'
+                        className='m-1 colours'
                         variant="outline-secondary"
                         type="checkbox"
                         checked={selected('blue')}

@@ -9,13 +9,15 @@ import { useNavigate } from 'react-router-dom';
 const CategoryPage = () => {
     const navigate = useNavigate();
     const [productInfo, setProductInfo] = useState([]);
+    //const [categories, setCategories] = useState([]);
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        console.log("useEffect called");
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
             .then(res => {
                 setProductInfo(res.data);
+                //setCategories(res.data.categories);
+                console.log(JSON.stringify(res, null, 2));
             })
             .catch(err => {
                 console.log(err);
@@ -29,6 +31,8 @@ const CategoryPage = () => {
 
     const displayProducts = () => {
         return productInfo.map((product, index) => {
+            console.log(JSON.stringify(product, null, 2));
+
             return (
                 <Col key={index}>
                     <Card className='product-card m-1' key={product.id} onClick={() => goToProduct(product._id)}>

@@ -1,5 +1,7 @@
 import express from "express";
 import ProductData from "../models/product_data.model.js";
+import Categories from "../models/categories.model.js";
+
 const router = express.Router();
 
 /* basic search page for all products

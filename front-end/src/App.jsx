@@ -23,6 +23,7 @@ function App() {
                         <Route path="/product/:productId" element={<ProductPage />} />
                         <Route path="/checkout" element={<CheckoutPage />} />
                     </Routes>
+
                     <Footer />
                 </BrowserRouter>
             </ShopContextProvider>

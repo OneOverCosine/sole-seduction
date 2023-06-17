@@ -13,7 +13,6 @@ router.get('/product/:id', async (req, res) => {
     } catch (err) {
         res.status(500).send(err.message);
     }
-
 });
 
 router.route(`/`).get(async (req, res) => {

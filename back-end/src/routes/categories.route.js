@@ -8,11 +8,19 @@ const router = express.Router();
 also used to filter products by brand and all that*/
 
 router.route(`/`).get(async (req, res) => {
+    let results = {};
+
     try {
         ProductData.find({})
-            .then(
-                products => res.send(products)
-            ).catch(
+            .then(products => {
+                // products => res.send(products)
+                results["products"] = products;
+                Categories.find({}).then(categories => {
+                    results["categories"] = categories;
+                    // console.log(`Results: ${JSON.stringify(results, null, 2)}`);
+                    res.send(results);
+                }).catch(err => console.log(err))
+            }).catch(
                 err => console.error(err)
             )
     }
@@ -20,6 +28,20 @@ router.route(`/`).get(async (req, res) => {
         console.error(err);
     }
 });
+
+// router.route(`/`).get(async (req, res) => {
+//     try {
+//         ProductData.find({})
+//             .then(
+//                 products => res.send(products)
+//             ).catch(
+//                 err => console.error(err)
+//             )
+//     }
+//     catch (err) {
+//         console.error(err);
+//     }
+// });
 
 router.route('/:filter').get(
     async (req, res) => {

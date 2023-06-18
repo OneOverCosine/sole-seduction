@@ -5,19 +5,19 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom'
 import Filter from "../Filter/Filter";
 import { useNavigate } from 'react-router-dom';
+import FilterNew from "../Filter/FilterNew";
 
 const CategoryPage = () => {
     const navigate = useNavigate();
     const [productInfo, setProductInfo] = useState([]);
-    //const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_REACT_APP_DB_URL}categories/${searchParams.toString()}`)
             .then(res => {
-                setProductInfo(res.data);
-                //setCategories(res.data.categories);
-                console.log(JSON.stringify(res, null, 2));
+                setProductInfo(res.data.products);
+                setCategories(formatCategories(res.data.categories));
             })
             .catch(err => {
                 console.log(err);
@@ -31,8 +31,6 @@ const CategoryPage = () => {
 
     const displayProducts = () => {
         return productInfo.map((product, index) => {
-            console.log(JSON.stringify(product, null, 2));
-
             return (
                 <Col key={index}>
                     <Card className='product-card m-1' key={product.id} onClick={() => goToProduct(product._id)}>
@@ -48,9 +46,20 @@ const CategoryPage = () => {
         })
     }
 
+    console.log(`Categories: ${JSON.stringify(categories, null, 2)}`)
+
+    const formatCategories = categoryData => {
+        let formatted = { Gender: [], Brand: [], Colour: [] };
+        for (let i = 0; i < categoryData.length; i++) {
+            formatted[categoryData[i]["type"]].push(categoryData[i]["name"]);
+        }
+        return formatted;
+    }
+
     return (
         <>
-            <Filter />
+            {/* <Filter /> */}
+            <FilterNew categories={categories} />
             <Row className="p-2" xs={2} md={4}>
                 {displayProducts()}
             </Row>

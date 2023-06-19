@@ -32,11 +32,25 @@ const FilterNew = ({ categories }) => {
 
     const handleFilter = () => {
         setDisabled(true);
-        //applyFilter();
+        applyFilter()
 
         setDisabled(false);
         setShow(false);
     };
+
+    const applyFilter = () => {
+        let currentUrlParams = new URLSearchParams(window.location.search);
+
+        for (let [key, values] of Object.entries(filters)) {
+            currentUrlParams.set(key, values);
+        }
+
+        let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
+
+        console.log(`New url: ${newUrl}`);
+        navigate(newUrl, { replace: true });
+        //window.location.reload(false);  // an error occurs on reload
+    }
 
     const addFilter = (key, value) => {
         let newFilters = filters;
@@ -63,7 +77,7 @@ const FilterNew = ({ categories }) => {
                     className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
                     variant="outline-secondary"
                     type="checkbox"
-                    checked={selected({ item })}
+                    checked={selected(item)}
                     onClick={() => handleSelect(categoryType, item)}
                 >
                     {item}

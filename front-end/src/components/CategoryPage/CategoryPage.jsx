@@ -2,8 +2,8 @@ import axios from "axios";
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { useEffect, useState } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom'
-import Filter from "../Filter/FilterOld";
+import { useSearchParams } from 'react-router-dom'
+import Filter from "../Filter/Filter.jsx";
 import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
@@ -17,14 +17,12 @@ const CategoryPage = () => {
             .then(res => {
                 setProductInfo(res.data.products);
                 setCategories(formatCategories(res.data.categories));
-                // console.log(`res.data: \n${JSON.stringify(res.data, null, 2)}`);
             })
             .catch(err => {
                 console.log(err);
             });
     }, []);
 
-    // Link to product page
     const goToProduct = (productId) => {
         navigate(`/product/${productId}`)
     }
@@ -48,8 +46,6 @@ const CategoryPage = () => {
             )
         })
     }
-
-    // console.log(`Categories: ${JSON.stringify(categories, null, 2)}`)
 
     const formatCategories = categoryData => {
         let formatted = { Gender: [], Brand: [], Colour: [] };

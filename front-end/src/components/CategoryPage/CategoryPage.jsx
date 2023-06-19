@@ -3,9 +3,8 @@ import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom'
-import Filter from "../Filter/Filter";
+import Filter from "../Filter/FilterOld";
 import { useNavigate } from 'react-router-dom';
-import FilterNew from "../Filter/FilterNew";
 
 const CategoryPage = () => {
     const navigate = useNavigate();
@@ -65,8 +64,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            {/* <Filter /> */}
-            <FilterNew categories={categories} />
+            <Filter categories={categories} />
             <Row className="p-2" xs={2} md={4}>
                 {displayProducts()}
             </Row>

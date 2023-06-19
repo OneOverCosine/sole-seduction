@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigate, redirect } from 'react-router-dom';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
 
-
-const Filter = () => {
+const FilterNew = ({ categories }) => {
 
     const [show, setShow] = useState(false);
-    const [checked, setChecked] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [filters, setFilters] = useState([]);
+    const [filters, setFilters] = useState({ Gender: [], Brand: [], Colour: [] });
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -16,38 +14,77 @@ const Filter = () => {
     const navigate = useNavigate();
 
     const selected = value => {
-        return filters.includes(value);
+        for (const filterType in filters) {
+            if (filters[filterType].includes(value)) return true;
+        }
+        return false;
     }
 
-    const handleSelect = value => {
-        if (!filters.includes(value))
-            setFilters([...filters, value]);
-        else {
-            setFilters(filters.toSpliced(filters.indexOf(value), 1));
-        }
+    const handleSelect = (key, value) => {
+        if (!selected(value)) addFilter(key, value);
+        else removeFilter(key, value);
     }
 
     const handleFilter = () => {
         setDisabled(true);
-        //applyFilter();
+        applyFilter()
 
         setDisabled(false);
         setShow(false);
     };
 
     const applyFilter = () => {
-
-        console.log(`filters: ${filters}`);
         let currentUrlParams = new URLSearchParams(window.location.search);
-        currentUrlParams.set('colours', filters); // working on here now
+
+        for (let [key, values] of Object.entries(filters)) {
+            if (filters[key].length === 0) {
+                continue;
+            }
+
+            let filtername = key === "Colour" ? key.toLowerCase() + "s" : key.toLowerCase();
+            currentUrlParams.set(filtername, values);
+        }
+
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
-        //console.log(`new url: ${newUrl}`);
 
         navigate(newUrl, { replace: true });
         window.location.reload(false);
+        console.log(`New url: ${newUrl}`);
     }
 
+    const addFilter = (key, value) => {
+        let newFilters = filters;
+        newFilters[key].push(value);
+        setFilters(newFilters);
+    }
 
+    const removeFilter = (key, value) => {
+        let newFilters = filters;
+        newFilters[key].splice(newFilters[key].indexOf(value), 1);
+        setFilters(newFilters);
+    }
+
+    const showCategories = categoryType => {
+        if (typeof categories === "undefined" || categories.length === 0) {
+            return <p>No category data...</p>;
+        }
+
+        return categories[categoryType].map((item, index) => {
+            return (
+                <ToggleButton
+                    key={index}
+                    disabled={disabled}
+                    className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
+                    variant="outline-secondary"
+                    type="checkbox"
+                    checked={selected(item)}
+                    onClick={() => handleSelect(categoryType, item)}
+                >
+                    {item}
+                </ToggleButton>
+            )
+        });
+    }
 
     return (
         <>
@@ -59,92 +96,18 @@ const Filter = () => {
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>Filters</Offcanvas.Title>
                 </Offcanvas.Header>
+
                 <Offcanvas.Body>
                     <h5>Gender</h5>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 gender'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('Men')}
-                        onClick={() => handleSelect('Men')}
-                    >
-                        Men
-                    </ToggleButton>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 gender'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('Women')}
-                        onClick={() => handleSelect('Women')}
-                    >
-                        Women
-                    </ToggleButton>
+                    {showCategories("Gender")}
                     <hr />
+
                     <h5>Brand</h5>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 brand'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected("Doc Marten's")}
-                        onClick={() => handleSelect("Doc Marten's")}
-                    >
-                        Doc Marten's
-                    </ToggleButton>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 brand'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('Prada')}
-                        onClick={() => handleSelect('Prada')}
-                    >
-                        Prada
-                    </ToggleButton>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 brand'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('Balenciaga')}
-                        onClick={() => handleSelect('Balenciaga')}
-                    >
-                        Balenciaga
-                    </ToggleButton>
+                    {showCategories("Brand")}
                     <hr />
+
                     <h5>Colour</h5>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 colours'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected("black")}
-                        onClick={() => handleSelect("black")}
-                    >
-                        Black
-                    </ToggleButton>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 colours'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('brown')}
-                        onClick={() => handleSelect('brown')}
-                    >
-                        Brown
-                    </ToggleButton>
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 colours'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected('blue')}
-                        onClick={() => handleSelect('blue')}
-                    >
-                        Blue
-                    </ToggleButton>
+                    {showCategories("Colour")}
                     <hr />
 
                     <Button disabled={disabled} className='m-1' onClick={handleFilter}>
@@ -161,4 +124,4 @@ const Filter = () => {
     )
 }
 
-export default Filter
+export default FilterNew

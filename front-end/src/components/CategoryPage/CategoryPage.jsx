@@ -18,6 +18,7 @@ const CategoryPage = () => {
             .then(res => {
                 setProductInfo(res.data.products);
                 setCategories(formatCategories(res.data.categories));
+                // console.log(`res.data: \n${JSON.stringify(res.data, null, 2)}`);
             })
             .catch(err => {
                 console.log(err);
@@ -30,6 +31,9 @@ const CategoryPage = () => {
     }
 
     const displayProducts = () => {
+
+        if (typeof productInfo === "undefined" || productInfo.length === 0) return <p>No product info</p>
+
         return productInfo.map((product, index) => {
             return (
                 <Col key={index}>
@@ -46,12 +50,15 @@ const CategoryPage = () => {
         })
     }
 
-    console.log(`Categories: ${JSON.stringify(categories, null, 2)}`)
+    // console.log(`Categories: ${JSON.stringify(categories, null, 2)}`)
 
     const formatCategories = categoryData => {
         let formatted = { Gender: [], Brand: [], Colour: [] };
-        for (let i = 0; i < categoryData.length; i++) {
-            formatted[categoryData[i]["type"]].push(categoryData[i]["name"]);
+
+        if (typeof categoryData !== "undefined" && categoryData.length !== 0) {
+            for (let i = 0; i < categoryData.length; i++) {
+                formatted[categoryData[i]["type"]].push(categoryData[i]["name"]);
+            }
         }
         return formatted;
     }

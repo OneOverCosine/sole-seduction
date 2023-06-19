@@ -21,13 +21,8 @@ const FilterNew = ({ categories }) => {
     }
 
     const handleSelect = (key, value) => {
-        if (!selected(value)) {
-            addFilter(key, value);
-        }
-        else {
-            removeFilter(key, value);
-        }
-        console.log(`Filters after button press:\n${JSON.stringify(filters, null, 2)}`);
+        if (!selected(value)) addFilter(key, value);
+        else removeFilter(key, value);
     }
 
     const handleFilter = () => {
@@ -42,14 +37,19 @@ const FilterNew = ({ categories }) => {
         let currentUrlParams = new URLSearchParams(window.location.search);
 
         for (let [key, values] of Object.entries(filters)) {
-            currentUrlParams.set(key, values);
+            if (filters[key].length === 0) {
+                continue;
+            }
+
+            let filtername = key === "Colour" ? key.toLowerCase() + "s" : key.toLowerCase();
+            currentUrlParams.set(filtername, values);
         }
 
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
 
-        console.log(`New url: ${newUrl}`);
         navigate(newUrl, { replace: true });
-        //window.location.reload(false);  // an error occurs on reload
+        window.location.reload(false);
+        console.log(`New url: ${newUrl}`);
     }
 
     const addFilter = (key, value) => {

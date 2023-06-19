@@ -25,12 +25,15 @@ router.route(`/`).get(async (req, res) => {
 
 router.route('/:filter').get(
     async (req, res) => {
+        const params = req.params.filter.split(/[=&]/);
         let results = {};
-        let params = req.params.filter.split(/[=&]/);
         let filters = params[1].split(",");
 
+        for (let i = 0; i < filters.length; i++) {
+            filters[i] = filters[i].replaceAll("+", " ");
+        }
+
         const query = { [params[0]]: { $in: filters } };
-        console.log(query);
 
         ProductData.find(query)
             .then(products => {

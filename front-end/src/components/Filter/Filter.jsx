@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
 
-const FilterNew = ({ categories }) => {
+const Filter = ({ categories }) => {
 
     const [show, setShow] = useState(false);
     const [disabled, setDisabled] = useState(false);
@@ -28,7 +28,6 @@ const FilterNew = ({ categories }) => {
     const handleFilter = () => {
         setDisabled(true);
         applyFilter()
-
         setDisabled(false);
         setShow(false);
     };
@@ -41,12 +40,17 @@ const FilterNew = ({ categories }) => {
                 continue;
             }
 
-            let filtername = key === "Colour" ? key.toLowerCase() + "s" : key.toLowerCase();
-            currentUrlParams.set(filtername, values);
+            key = key.toLowerCase();
+            if (key === "colour") {
+                key += "s";
+                for (let i = 0; i < values.length; i++) {
+                    values[i] = values[i].toLowerCase();
+                }
+            }
+            currentUrlParams.set(key, values);
         }
 
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
-
         navigate(newUrl, { replace: true });
         window.location.reload(false);
         console.log(`New url: ${newUrl}`);
@@ -68,6 +72,8 @@ const FilterNew = ({ categories }) => {
         if (typeof categories === "undefined" || categories.length === 0) {
             return <p>No category data...</p>;
         }
+
+        // highlight selected filters....
 
         return categories[categoryType].map((item, index) => {
             return (
@@ -124,4 +130,4 @@ const FilterNew = ({ categories }) => {
     )
 }
 
-export default FilterNew
+export default Filter

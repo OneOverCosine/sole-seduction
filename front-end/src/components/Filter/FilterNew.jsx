@@ -14,30 +14,35 @@ const FilterNew = ({ categories }) => {
     const navigate = useNavigate();
 
     const selected = value => {
-        // logic to determine whether a filter button has been pressed
-        // should ideally return true or false
-        Object.keys(filters).forEach(key => {
-            if (filters[key].includes(value)) {
-                console.log(`${value} was selected`)
-                return true;
-            }
-        });
-
-        console.log(`${value} was not selected`)
+        for (const filterType in filters) {
+            if (filters[filterType].includes(value)) return true;
+        }
+        console.log(`${value} was not previously selected`)
         return false;
     }
 
     const handleSelect = (key, value) => {
-        console.log(`Button with the value ${value} was pressed`)
         if (!selected(value)) {
-            console.log("add the value to filters")
+            addFilter(key, value);
         }
         else {
-            // remove the value from filters
+            removeFilter(key, value);
         }
+
+        console.log(`Filters after button press:\n${JSON.stringify(filters, null, 2)}`)
     }
 
+    const addFilter = (key, value) => {
+        let newFilters = filters;
+        newFilters[key].push(value);
+        setFilters(newFilters);
+    }
 
+    const removeFilter = (key, value) => {
+        let newFilters = filters;
+        newFilters[key].splice(newFilters[key].indexOf(value), 1);
+        setFilters(newFilters);
+    }
 
     return (
         <>

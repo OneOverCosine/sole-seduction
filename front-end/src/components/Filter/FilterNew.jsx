@@ -17,7 +17,6 @@ const FilterNew = ({ categories }) => {
         for (const filterType in filters) {
             if (filters[filterType].includes(value)) return true;
         }
-        console.log(`${value} was not previously selected`)
         return false;
     }
 
@@ -28,9 +27,16 @@ const FilterNew = ({ categories }) => {
         else {
             removeFilter(key, value);
         }
-
-        console.log(`Filters after button press:\n${JSON.stringify(filters, null, 2)}`)
+        console.log(`Filters after button press:\n${JSON.stringify(filters, null, 2)}`);
     }
+
+    const handleFilter = () => {
+        setDisabled(true);
+        //applyFilter();
+
+        setDisabled(false);
+        setShow(false);
+    };
 
     const addFilter = (key, value) => {
         let newFilters = filters;
@@ -42,6 +48,28 @@ const FilterNew = ({ categories }) => {
         let newFilters = filters;
         newFilters[key].splice(newFilters[key].indexOf(value), 1);
         setFilters(newFilters);
+    }
+
+    const showCategories = categoryType => {
+        if (typeof categories === "undefined" || categories.length === 0) {
+            return <p>No category data...</p>;
+        }
+
+        return categories[categoryType].map((item, index) => {
+            return (
+                <ToggleButton
+                    key={index}
+                    disabled={disabled}
+                    className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
+                    variant="outline-secondary"
+                    type="checkbox"
+                    checked={selected({ item })}
+                    onClick={() => handleSelect(categoryType, item)}
+                >
+                    {item}
+                </ToggleButton>
+            )
+        });
     }
 
     return (
@@ -56,25 +84,26 @@ const FilterNew = ({ categories }) => {
                 </Offcanvas.Header>
 
                 <Offcanvas.Body>
-                    {/* show the filter options here */}
+                    <h5>Gender</h5>
+                    {showCategories("Gender")}
+                    <hr />
 
-                    <ToggleButton
-                        disabled={disabled}
-                        className='m-1 gender'
-                        variant="outline-secondary"
-                        type="checkbox"
-                        checked={selected("Men")}
-                        onClick={() => handleSelect("Gender", "Men")}
-                    ></ToggleButton>
+                    <h5>Brand</h5>
+                    {showCategories("Brand")}
+                    <hr />
 
-                    {/* <Button disabled={disabled} className='m-1' onClick={handleFilter}>
+                    <h5>Colour</h5>
+                    {showCategories("Colour")}
+                    <hr />
+
+                    <Button disabled={disabled} className='m-1' onClick={handleFilter}>
                         Filter Products&nbsp;
                         {disabled &&
                             <Spinner variant='light' animation="border" role="status" size="sm">
                                 <span className="visually-hidden">Loading...</span>
                             </Spinner>
                         }
-                    </Button> */}
+                    </Button>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

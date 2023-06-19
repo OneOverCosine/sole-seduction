@@ -29,7 +29,7 @@ const Filter = () => {
 
     const handleFilter = () => {
         setDisabled(true);
-        applyFilter();
+        //applyFilter();
 
         setDisabled(false);
         setShow(false);

@@ -4,6 +4,7 @@ import { Row, Col, Card } from "react-bootstrap";
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom'
 import Filter from "../Filter/Filter.jsx";
+import FilterOld from "../Filter/FilterOld";
 import { useNavigate } from 'react-router-dom';
 
 const CategoryPage = () => {
@@ -60,6 +61,7 @@ const CategoryPage = () => {
 
     return (
         <>
+            {/* <FilterOld /> */}
             <Filter categories={categories} />
             <Row className="p-2" xs={2} md={4}>
                 {displayProducts()}

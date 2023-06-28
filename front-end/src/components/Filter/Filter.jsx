@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
+import Toggle from '../Toggle/Toggle';
 
 const Filter = ({ categories }) => {
 
     const [show, setShow] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [filters, setFilters] = useState({ Gender: [], Brand: [], Colour: [] });
+    const [filters, setFilters] = useState({ Gender: [], Brand: [], Colour: [] });  // populate with starting filters...
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,7 +16,10 @@ const Filter = ({ categories }) => {
 
     const selected = value => {
         for (const filterType in filters) {
-            if (filters[filterType].includes(value)) return true;
+            if (filters[filterType].includes(value)) {
+                console.log(`${value} was selected`);
+                return true;
+            }
         }
         return false;
     }
@@ -23,6 +27,8 @@ const Filter = ({ categories }) => {
     const handleSelect = (key, value) => {
         if (!selected(value)) addFilter(key, value);
         else removeFilter(key, value);
+
+        console.log(`Filters:\n${JSON.stringify(filters, null, 2)}`)
     }
 
     const handleFilter = () => {
@@ -53,7 +59,6 @@ const Filter = ({ categories }) => {
         let newUrl = window.location.pathname + "?" + currentUrlParams.toString();
         navigate(newUrl, { replace: true });
         window.location.reload(false);
-        console.log(`New url: ${newUrl}`);
     }
 
     const addFilter = (key, value) => {
@@ -73,21 +78,29 @@ const Filter = ({ categories }) => {
             return <p>No category data...</p>;
         }
 
-        // highlight selected filters....
-
         return categories[categoryType].map((item, index) => {
+            // return (
+            //     <ToggleButton
+            //         key={index}
+            //         disabled={disabled}
+            //         className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
+            //         variant="outline-secondary"
+            //         type="checkbox"
+            //         checked={selected(item)}
+            //         onClick={() => handleSelect(categoryType, item)}
+            //     >
+            //         {item}
+            //     </ToggleButton>
+            // )
+
             return (
-                <ToggleButton
+                <Toggle
                     key={index}
-                    disabled={disabled}
-                    className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
-                    variant="outline-secondary"
-                    type="checkbox"
-                    checked={selected(item)}
-                    onClick={() => handleSelect(categoryType, item)}
-                >
-                    {item}
-                </ToggleButton>
+                    item={item}
+                    categoryType={categoryType}
+                    isSelected={selected(item)}
+                    handleSelect={handleSelect}
+                />
             )
         });
     }

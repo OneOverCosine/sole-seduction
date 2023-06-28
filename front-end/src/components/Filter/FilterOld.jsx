@@ -3,10 +3,10 @@ import { useNavigate, redirect } from 'react-router-dom';
 import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
 
 
-const Filter = () => {
+const FilterOld = () => {
 
     const [show, setShow] = useState(false);
-    const [checked, setChecked] = useState(false);
+    // const [checked, setChecked] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [filters, setFilters] = useState([]);
 
@@ -161,4 +161,4 @@ const Filter = () => {
     )
 }
 
-export default Filter
+export default FilterOld

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button, ToggleButton, Offcanvas, Spinner } from 'react-bootstrap';
+import { Button, Offcanvas, Spinner } from 'react-bootstrap';
 import Toggle from '../Toggle/Toggle';
 
 const Filter = ({ categories }) => {
@@ -79,20 +79,6 @@ const Filter = ({ categories }) => {
         }
 
         return categories[categoryType].map((item, index) => {
-            // return (
-            //     <ToggleButton
-            //         key={index}
-            //         disabled={disabled}
-            //         className={`m-1 ${categoryType === "Colour" ? categoryType.toLowerCase() + "s" : categoryType.toLowerCase()}`}
-            //         variant="outline-secondary"
-            //         type="checkbox"
-            //         checked={selected(item)}
-            //         onClick={() => handleSelect(categoryType, item)}
-            //     >
-            //         {item}
-            //     </ToggleButton>
-            // )
-
             return (
                 <Toggle
                     key={index}

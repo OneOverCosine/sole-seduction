@@ -1,6 +1,6 @@
 import "./CategoryPage.css";
 import { Row, Col, Card } from "react-bootstrap";
-import { useEffect, useState } from 'react';
+import placeholder from '../../assets/placeholder-image.jpg'
 import { useSearchParams, useParams } from 'react-router-dom'
 import Filter from "../Filter/Filter";
 import { useNavigate } from 'react-router-dom';
@@ -17,15 +17,12 @@ const CategoryPage = () => {
         navigate(`/product/${productId}`)
     }
 
-    console.log(products)
-
     const displayProducts = () => {
         return products.map((product, index) => {
-            console.log(product)
             return (
                 <Col key={index}>
                     <Card className='product-card m-1' onClick={() => goToProduct(product._id)}>
-                        <Card.Img variant='top' src={product.img[0]} />
+                        <Card.Img variant='top' src={placeholder} />
                         <Card.Body>
                             <Card.Title>{product.brand}</Card.Title>
                             <Card.Subtitle>{product.model}</Card.Subtitle>

@@ -36,7 +36,7 @@ const Brands = () => {
                 <Col key={index}>
                     <Link className='link-dark' to={`/categories?brand=${brand.name}`}>
                         <Card className='card m-1' style={{ "cursor": "pointer" }} >
-                            <Card.Img variant='top' src={brand.image} />
+                            <Card.Img variant='top' src={placeHolder} />
                             <Card.Title className='text-center'>{brand.name}</Card.Title>
                         </Card>
                     </Link>

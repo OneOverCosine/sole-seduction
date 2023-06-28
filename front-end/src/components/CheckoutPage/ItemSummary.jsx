@@ -4,6 +4,7 @@
 import { useContext } from "react";
 import { ShopContext } from '../../context/ShopContext'
 import { Link } from "react-router-dom";
+import placeholder from '../../assets/placeholder-image.jpg'
 
 const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
@@ -15,7 +16,7 @@ const ItemSummary = (props) => {
         <>
             {items.map((item, index) => (
                 <div className="cartItem" key={index}>
-                    <img src={img[0]} alt={model} />
+                    <img src={placeholder} alt={model} />
                     <div className="description">
                         <h4> {model} </h4>
                         <Link to={`/product/${item.itemId}`}>Go to product</Link>

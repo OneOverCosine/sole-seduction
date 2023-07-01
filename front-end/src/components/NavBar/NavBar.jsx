@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container, Button, Modal } from 'react-bootstrap';
 import logo from '../../assets/logo.png';
 import basket from '../../assets/basket.svg';
 import { ShopContext } from '../../context/ShopContext';
@@ -9,6 +9,7 @@ const NavBar = () => {
 
     const context = useContext(ShopContext);
     const cartSize = Object.keys(context.cartItems).length;
+    const [show, setShow] = useState(false);
 
     return (
         <>
@@ -29,7 +30,7 @@ const NavBar = () => {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/categories?gender=Men">Men</Nav.Link>
                             <Nav.Link href="/categories?gender=Women">Women</Nav.Link>
-                            <Nav.Link className='text-danger' href="#sale">Sale</Nav.Link>
+                            <Nav.Link className='text-danger' onClick={() => setShow(true)}>Sale</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                     <Link className='link-light' to="/checkout">
@@ -43,6 +44,21 @@ const NavBar = () => {
                     </Link>
                 </Container>
             </Navbar>
+
+            <Modal show={show} onHide={() => setShow(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Sale</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Thanks for testing out our site!<br />
+                    We don't have any sale items yet, we just liked the red link.
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={() => setShow(false)}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

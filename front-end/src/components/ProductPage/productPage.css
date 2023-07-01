@@ -117,6 +117,7 @@
     border: none;
     cursor: pointer;
     padding: 10px 25px;
+    margin-left: 25px;
     margin-bottom: 15px;
     align-self: flex-end;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

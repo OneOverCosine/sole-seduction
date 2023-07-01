@@ -7,9 +7,7 @@ import { Link } from "react-router-dom";
 
 const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
-    const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
-
-    // const { products, getSubtotal } = props;
+    const { cartItems, addToCart, removeFromCart } = useContext(ShopContext)
 
     const items = Object.values(cartItems).filter((item) => item.itemId === _id);
 
@@ -30,14 +28,8 @@ const ItemSummary = (props) => {
                         <h6>Size: {item.size}</h6>
                         <div className="d-flex ">
                             <h6 className="align-self-center">Quantity: {item.quantity} &nbsp;</h6>
-                            {/* <div className="countHandler"> */}
                             <button className="btn btn-sm btn-dark m-1" onClick={() => removeFromCart(`${_id}-${item.colour}-${item.size}`)}> - </button>
-                            {/* <input
-                                className="align-self-stretch m-1"
-                                value={item.quantity}
-                                onChange={(e) => updateCartItemCount(Number(e.target.value), `${_id}-${item.colour}-${item.size}`)} /> */}
                             <button className="btn btn-sm btn-dark m-1" onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
-                            {/* </div> */}
                         </div>
                         <h5> £{price} </h5>
 

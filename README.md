@@ -62,6 +62,10 @@ We would like to acknowledge and highlight the coding contributions made by each
 - Modals for warning messages
 - Brand and Category card arrays and product cards
 ### Paula:
+- Product page components
+- Checkout (cart) page components inc item summary
+- single product route
+- Context provider
 
 ## TESTING
 Test files can be found nested with the components on the front end. Components are tested using the React Testing Library. Out API routes were tested manually using Postman.

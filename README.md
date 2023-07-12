@@ -52,7 +52,10 @@ The final part of our planning stage was to add the user stories to the backlog 
 ## CONTRIBUTORS
 We would like to acknowledge and highlight the coding contributions made by each member of our group:
 ### Dunni:
-
+- MongoDB setup
+- Initial route setup
+- Category filtering
+- Filter toggling
 ### Wil:
 - Filter Modal
 - Front End testing

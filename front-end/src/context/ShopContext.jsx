@@ -71,6 +71,13 @@ const ShopContextProvider = (props) => {
         setCartItems(updatedItems);
     }
 
+    const deleteFromCart = key => {
+        const updatedItems = { ...cartItems };
+        delete updatedItems[key];
+
+        setCartItems(updatedItems);
+    }
+
     const updateCartItemCount = (newAmount, key) => {
 
         setCartItems((prevState) => {
@@ -85,7 +92,7 @@ const ShopContextProvider = (props) => {
     }
 
     //all the states and functions to be passed into provider to be used in other components
-    const contextValue = { cartItems, addToCart, removeFromCart, updateCartItemCount, products }
+    const contextValue = { cartItems, addToCart, removeFromCart, deleteFromCart, updateCartItemCount, products }
 
     return (
         <ShopContext.Provider value={contextValue}>

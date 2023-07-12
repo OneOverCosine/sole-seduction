@@ -1,15 +1,21 @@
 
 //'Number' converts the string input to a number
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ShopContext } from '../../context/ShopContext'
 import { Link } from "react-router-dom";
+import { Button, Modal } from 'react-bootstrap';
 
 const ItemSummary = (props) => {
     const { _id, model, img, price } = props.data;
-    const { cartItems, addToCart, removeFromCart, updateCartItemCount } = useContext(ShopContext)
+    const { cartItems, addToCart, removeFromCart, deleteFromCart } = useContext(ShopContext)
 
-    // const { products, getSubtotal } = props;
+    const [show, setShow] = useState(false);
+
+    const removeItem = item => {
+        deleteFromCart(item);
+        setShow(false);
+    }
 
     const items = Object.values(cartItems).filter((item) => item.itemId === _id);
 
@@ -30,17 +36,25 @@ const ItemSummary = (props) => {
                         <h6>Size: {item.size}</h6>
                         <div className="d-flex ">
                             <h6 className="align-self-center">Quantity: {item.quantity} &nbsp;</h6>
-                            {/* <div className="countHandler"> */}
-                            <button className="btn btn-sm btn-dark m-1" onClick={() => removeFromCart(`${_id}-${item.colour}-${item.size}`)}> - </button>
-                            {/* <input
-                                className="align-self-stretch m-1"
-                                value={item.quantity}
-                                onChange={(e) => updateCartItemCount(Number(e.target.value), `${_id}-${item.colour}-${item.size}`)} /> */}
+                            <button className="btn btn-sm btn-dark m-1" onClick={() => { if (item.quantity > 1) removeFromCart(`${_id}-${item.colour}-${item.size}`) }}> - </button>
                             <button className="btn btn-sm btn-dark m-1" onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
-                            {/* </div> */}
+                            <button className="btn btn sm btn-danger m-1" onClick={() => setShow(true)}>Remove</button>
                         </div>
                         <h5> £{price} </h5>
-
+                        <Modal show={show} onHide={() => setShow(false)}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Remove Item</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                Are you sure you want to remove <strong>{model}</strong> from the cart?
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant='danger' onClick={() => removeItem(`${_id}-${item.colour}-${item.size}`)}>Remove Item</Button>
+                                <Button variant="secondary" onClick={() => setShow(false)}>
+                                    Cancel
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
                     </div>
                 </div>
             ))}

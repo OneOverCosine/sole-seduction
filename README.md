@@ -77,5 +77,3 @@ Some ideas for ways to improve it are:
 - User roles could be used to assign people to customers, or administrators.
 - A content management system to add, remove and update products.
 - The ability to discount products and add them to a sale category.
-- Filter by multiple categories
-- Cart icon to update quantity when the user updates the quantity of an item in the cart

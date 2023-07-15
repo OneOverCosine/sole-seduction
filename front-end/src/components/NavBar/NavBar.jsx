@@ -30,6 +30,7 @@ const NavBar = () => {
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/categories?gender=Men">Men</Nav.Link>
                             <Nav.Link href="/categories?gender=Women">Women</Nav.Link>
+                            <Nav.Link href="/categories">All Products</Nav.Link>
                             <Nav.Link className='text-danger' onClick={() => setShow(true)}>Sale</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

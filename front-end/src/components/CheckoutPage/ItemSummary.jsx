@@ -1,6 +1,4 @@
-
-//'Number' converts the string input to a number
-
+import './checkoutpage.css'
 import { useContext, useState } from "react";
 import { ShopContext } from '../../context/ShopContext'
 import { Link } from "react-router-dom";
@@ -23,10 +21,11 @@ const ItemSummary = (props) => {
         <>
             {items.map((item, index) => (
                 <div className="cartItem" key={index}>
-                    <img src={img[0]} alt={model} />
+                      <Link to={`/product/${item.itemId}`}><img src={img[0]} alt={model} /></Link>
                     <div className="description">
-                        <h4> {model} </h4>
-                        <Link to={`/product/${item.itemId}`}>Go to product</Link>
+                      
+                         <Link to={`/product/${item.itemId}`}><h4> {model} </h4></Link>
+                      
                         <div className="d-flex">
                             <h6 className="align-self-center">Colour: &nbsp;</h6>
                             <div className='colour m-1 border border-dark' style={{
@@ -36,11 +35,14 @@ const ItemSummary = (props) => {
                         <h6>Size: {item.size}</h6>
                         <div className="d-flex ">
                             <h6 className="align-self-center">Quantity: {item.quantity} &nbsp;</h6>
-                            <button className="btn btn-sm btn-dark m-1" onClick={() => { if (item.quantity > 1) removeFromCart(`${_id}-${item.colour}-${item.size}`) }}> - </button>
-                            <button className="btn btn-sm btn-dark m-1" onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
-                            <button className="btn btn sm btn-danger m-1" onClick={() => setShow(true)}>Remove</button>
+                            <button className="btn btn-sm btn-dark m-1 py-0" onClick={() => { if (item.quantity > 1) removeFromCart(`${_id}-${item.colour}-${item.size}`) }}> - </button>
+                            <button className="btn btn-sm btn-dark m-1 py-0" onClick={() => addToCart(_id, item.colour, item.size)}> + </button>
+                            <button className="btn btn sm btn-danger m-1 py-0" onClick={() => setShow(true)}><i className="fa-regular fa-trash-can"></i></button>
                         </div>
                         <h5> £{price} </h5>
+
+
+
                         <Modal show={show} onHide={() => setShow(false)}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Remove Item</Modal.Title>

@@ -52,9 +52,28 @@ The final part of our planning stage was to add the user stories to the backlog 
 ## CONTRIBUTORS
 We would like to acknowledge and highlight the coding contributions made by each member of our group:
 ### Dunni:
-
+- MongoDB setup
+- Initial route setup
+- Category filtering
+- Filter toggling
 ### Wil:
-
+- Filter Modal
+- Front End testing
+- Modals for warning messages
+- Brand and Category card arrays and product cards
 ### Paula:
+- Product page components
+- Checkout (cart) page components inc item summary
+- single product route
+- Context provider
 
 ## TESTING
+Test files can be found nested with the components on the front end. Components are tested using the React Testing Library. Out API routes were tested manually using Postman.
+
+## Future Work
+If you would like to add to this project, feel free to Fork it to your own repository and then make a pull request for new features.
+Some ideas for ways to improve it are:
+- It currently doesn't allow users to register, and there are no user roles.
+- User roles could be used to assign people to customers, or administrators.
+- A content management system to add, remove and update products.
+- The ability to discount products and add them to a sale category.

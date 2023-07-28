@@ -6,8 +6,21 @@ import Toggle from "../Toggle/Toggle";
 const Filter = ({ categories }) => {
   const [show, setShow] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [filters, setFilters] = useState({ Gender: [], Brand: [], Colour: [] }); // populate with starting filters...
-  // const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const createFilters = () => {
+    const initialFilters = { Gender: [], Brand: [], Colour: [] };
+    searchParams.forEach((value, key) => {
+      const selection = value.split(",");
+
+      if (key === "colours") initialFilters.Colour.push(...selection);
+      if (key === "gender") initialFilters.Gender.push(...selection);
+      if (key === "brand") initialFilters.Brand.push(...selection);
+    });
+    return initialFilters;
+  };
+
+  const [filters, setFilters] = useState(createFilters()); // populate with starting filters...
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,7 +30,7 @@ const Filter = ({ categories }) => {
   const selected = (value) => {
     for (const filterType in filters) {
       if (filters[filterType].includes(value)) {
-        console.log(`${value} was selected`);
+        //console.log(`${value} was selected`);
         return true;
       }
     }
@@ -28,7 +41,7 @@ const Filter = ({ categories }) => {
     if (!selected(value)) addFilter(key, value);
     else removeFilter(key, value);
 
-    console.log(`Filters:\n${JSON.stringify(filters, null, 2)}`);
+    //console.log(`Filters:\n${JSON.stringify(filters, null, 2)}`);
   };
 
   const handleFilter = () => {
@@ -40,12 +53,15 @@ const Filter = ({ categories }) => {
 
   const applyFilter = () => {
     let currentUrlParams = new URLSearchParams(window.location.search);
+
     for (let [key, values] of Object.entries(filters)) {
       if (filters[key].length === 0) {
         continue;
       }
 
       key = key.toLowerCase();
+
+      // Make colours lowercase
       if (key === "colour") {
         key += "s";
         for (let i = 0; i < values.length; i++) {
@@ -60,10 +76,6 @@ const Filter = ({ categories }) => {
     window.location.reload(false);
   };
 
-  // useEffect(() => {
-  //     console.log(searchParams)
-  // }, [])
-
   const addFilter = (key, value) => {
     let newFilters = filters;
     newFilters[key].push(value);
@@ -77,8 +89,8 @@ const Filter = ({ categories }) => {
   };
 
   const clearFilters = () => {
-    console.log("hello");
-    setFilters({ Gender: [], Brand: [], Colour: [] });
+    navigate("/categories", { replace: true });
+    window.location.reload(false);
   };
 
   const showCategories = (categoryType) => {
@@ -125,11 +137,6 @@ const Filter = ({ categories }) => {
 
           <Button disabled={disabled} className="m-1" onClick={handleFilter}>
             Filter Products&nbsp;
-            {/* {disabled &&
-                            <Spinner variant='light' animation="border" role="status" size="sm">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                        } */}
           </Button>
           <Button className="m-1 btn-secondary" onClick={clearFilters}>
             Clear Filters

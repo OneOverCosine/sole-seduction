@@ -6,14 +6,23 @@ import Toggle from "../Toggle/Toggle";
 const Filter = ({ categories }) => {
   const [show, setShow] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
+  const titleCase = (word) => {
+    let firstLetter = word.charAt(0);
+    firstLetter = firstLetter.toUpperCase();
+
+    return firstLetter + word.slice(1);
+  };
   const createFilters = () => {
     const initialFilters = { Gender: [], Brand: [], Colour: [] };
     searchParams.forEach((value, key) => {
-      const selection = value.split(",");
+      let selection = value.split(",");
 
-      if (key === "colours") initialFilters.Colour.push(...selection);
+      if (key === "colours") {
+        selection = selection.map((item) => titleCase(item));
+        initialFilters.Colour.push(...selection);
+      }
       if (key === "gender") initialFilters.Gender.push(...selection);
       if (key === "brand") initialFilters.Brand.push(...selection);
     });
@@ -41,7 +50,7 @@ const Filter = ({ categories }) => {
     if (!selected(value)) addFilter(key, value);
     else removeFilter(key, value);
 
-    //console.log(`Filters:\n${JSON.stringify(filters, null, 2)}`);
+    console.log(`Filters:\n${JSON.stringify(filters, null, 2)}`);
   };
 
   const handleFilter = () => {

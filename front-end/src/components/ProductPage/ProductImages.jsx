@@ -3,7 +3,7 @@ import "./productPage.css";
 
 const ProductImages = (props) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = props.img.map((image) => image.slice(1)); // Correcting src for demo version
+  const images = props.img.map((image) => image.slice(1)); // Correcting src here for demo
 
   const handleThumbnail = (index) => {
     setCurrentImageIndex(index);
@@ -19,7 +19,6 @@ const ProductImages = (props) => {
         <div className="main-image">
           {images.length > 0 && (
             <img src={images[currentImageIndex]} alt="product image" />
-            // <img src={props.img[currentImageIndex]} alt="product image" />
           )}
         </div>
 
@@ -32,7 +31,6 @@ const ProductImages = (props) => {
                 onClick={() => handleThumbnail(index)}
                 key={index}
               />
-              // <img src={image} alt="thumbnail" onClick={() => handleThumbnail(index)} key={index} />
             ))}
         </div>
       </div>

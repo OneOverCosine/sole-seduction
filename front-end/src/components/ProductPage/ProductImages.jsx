@@ -1,9 +1,16 @@
 import { useState } from "react";
 import "./productPage.css";
+import placeholder from "../../assets/placeholder-image.jpg";
 
-const ProductImages = (props) => {
+const ProductImages = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = props.img.map((image) => image.slice(5)); // Correcting src here for demo
+  const images = [
+    placeholder,
+    placeholder,
+    placeholder,
+    placeholder,
+    placeholder,
+  ];
 
   const handleThumbnail = (index) => {
     setCurrentImageIndex(index);

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Filter from "../Filter/Filter.jsx";
 import { useNavigate } from "react-router-dom";
+import placeholder from "../../assets/placeholder-image.jpg";
 
 const CategoryPage = () => {
   const navigate = useNavigate();
@@ -50,7 +51,8 @@ const CategoryPage = () => {
             key={product.id}
             onClick={() => goToProduct(product._id)}
           >
-            <Card.Img variant="top" src={product.img[0]} />
+            {/* <Card.Img variant="top" src={product.img[0]} /> */}
+            <Card.Img variant="top" src={placeholder} />
             <Card.Body>
               <Card.Title>{product.brand}</Card.Title>
               <Card.Subtitle>{product.model}</Card.Subtitle>

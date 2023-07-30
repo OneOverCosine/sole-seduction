@@ -3,7 +3,7 @@ import "./productPage.css";
 
 const ProductImages = (props) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = props.img.map((image) => image.slice(1)); // Correcting src here for demo
+  const images = props.img.map((image) => image.slice(5)); // Correcting src here for demo
 
   const handleThumbnail = (index) => {
     setCurrentImageIndex(index);

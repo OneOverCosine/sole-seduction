@@ -49,7 +49,7 @@ const CategoryPage = () => {
             key={product.id}
             onClick={() => goToProduct(product._id)}
           >
-            <Card.Img variant="top" src={product.img[0].slice(1)} />
+            <Card.Img variant="top" src={product.img[0].slice(5)} />
             <Card.Body>
               <Card.Title>{product.brand}</Card.Title>
               <Card.Subtitle>{product.model}</Card.Subtitle>
